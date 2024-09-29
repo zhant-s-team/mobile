@@ -1,30 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/app_controller.dart';
-import '../models/app_model.dart';
 import '../styles/app_styles.dart';
-import '../views/app_esqueci_senha.dart';  // Importe a nova tela aqui
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DataController(ApiService()),
-      child: MaterialApp(
-        home: HomeScreen(),
-        routes: {
-          '/forgot-password': (context) => ForgotPasswordScreen(),  // Defina a rota para a nova tela
-        },
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
+class ForgotPasswordScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -35,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
-      appBar: AppStyles.buildHeader(title: 'Login'),
+      appBar: AppStyles.buildHeader(title: 'Esqueci Minha Senha'),
       body: Column(
         children: [
           SizedBox(height: 25),
@@ -69,10 +48,7 @@ class HomeScreen extends StatelessWidget {
                           filled: true,
                           fillColor: Color.fromRGBO(210, 236, 255, 1),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromRGBO(0, 163, 255, 1),
-                              width: 1,
-                            ),
+                            borderSide: BorderSide(color: Color.fromRGBO(0, 163, 255, 1), width: 1),
                             borderRadius: BorderRadius.zero,
                           ),
                           contentPadding: EdgeInsets.symmetric(vertical: 5.0),
@@ -95,10 +71,7 @@ class HomeScreen extends StatelessWidget {
                           filled: true,
                           fillColor: Color.fromRGBO(210, 236, 255, 1),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromRGBO(0, 163, 255, 1),
-                              width: 1,
-                            ),
+                            borderSide: BorderSide(color: Color.fromRGBO(0, 163, 255, 1), width: 1),
                             borderRadius: BorderRadius.zero,
                           ),
                           contentPadding: EdgeInsets.symmetric(vertical: 5.0),
@@ -132,20 +105,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 75),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/forgot-password');  // Navega para a nova tela
-            },
-            child: Text(
-              'Esqueci minha senha',
-              style: TextStyle(
-                color: Color.fromRGBO(64, 106, 255, 1),
-                fontSize: 16,
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
+          SizedBox(height: 130),
           TextButton(
             onPressed: () {
               print('Link clicado: Suporte');
@@ -161,7 +121,7 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 20),
           TextButton(
             onPressed: () {
-              print('Link clicado: Voltar');
+              Navigator.pop(context); // Volta para a tela anterior
             },
             child: Text(
               'Voltar',
