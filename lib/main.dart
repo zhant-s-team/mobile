@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/app_controller.dart';
 import '../models/app_model.dart';
-import '../styles/app_styles.dart';
-import '../views/app_esqueci_senha.dart';  // Importe a nova tela aqui
+import '../styles/app_styles.dart'; // Importando o estilo
+import '../views/app_esqueci_senha.dart';
+import '../views/app_homepage.dart'; // Importando a tela "HomePage"
+import '../views/app_cadastro.dart'; // Importando a tela de cadastro
 
 void main() {
   runApp(MyApp());
@@ -16,242 +18,202 @@ class MyApp extends StatelessWidget {
       create: (context) => DataController(ApiService()),
       child: MaterialApp(
         home: HomeScreen(),
-        routes: {
-          '/forgot-password': (context) => ForgotPasswordScreen(),  // Defina a rota para a nova tela
-        },
       ),
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<DataController>(context);
-    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
-      appBar: AppStyles.buildHeader(title: 'Login'),
-      body: Column(
-        children: [
-          SizedBox(height: 25),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Container(
-              width: screenWidth - 30,
-              height: 239,
+      appBar: AppStyles.buildHeader(title: 'Login'), // Cabeçalho reutilizável
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            controller.loading
+                ? CircularProgressIndicator()
+                : SizedBox(height: 35), // Espaçamento de 35px da parte do login
+
+            // Adicionando o retângulo abaixo do login
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 35), // 35px de distância das bordas laterais
+              padding: EdgeInsets.symmetric(vertical: 25), // Espaço superior e inferior do container
+              width: double.infinity, // Largura dinâmica
               decoration: BoxDecoration(
-                color: Color.fromRGBO(217, 217, 217, 1),
-                borderRadius: BorderRadius.circular(11),
+                color: Color.fromRGBO(255, 255, 255, 1), // Cor branca
+                border: Border.all(
+                  color: Color.fromRGBO(217, 217, 217, 1), // Borda de 1px na cor cinza
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 13),
-                    Text(
-                      'Digite seu E-mail:',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    SizedBox(height: 12),
-                    Container(
-                      width: screenWidth - 290,
-                      height: 27,
-                      child: TextField(
-                        controller: usernameController,
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromRGBO(210, 236, 255, 1),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromRGBO(0, 163, 255, 1),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
+                children: [
+                  // Texto "Email"
+                  Padding(
+                    padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), // Ajuste de 5px da parte superior
+                    child: Text('Email'),
+                  ),
+                  // Caixa de texto para Email
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromRGBO(217, 217, 217, 1), // Cor da borda do campo de texto
                           ),
-                          contentPadding: EdgeInsets.symmetric(vertical: 5.0),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10), // Espaçamento interno
+                      ),
+                    ),
+                  ),
+                  // Texto "Senha"
+                  Padding(
+                    padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10), // 25px de espaçamento da borda
+                    child: Text('Senha'),
+                  ),
+                  // Caixa de texto para Senha
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromRGBO(217, 217, 217, 1), // Cor da borda do campo de texto
+                          ),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10), // Espaçamento interno
+                      ),
+                    ),
+                  ),
+                  // Botão "Entrar"
+                  SizedBox(height: 35), // Ajuste do espaçamento para 40px entre senha e botão
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Redirecionar para a tela app_homepage.dart ao pressionar o botão "Entrar"
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => AppHomePage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
+                        padding: EdgeInsets.symmetric(vertical: 15), // Tamanho do botão
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Entrar',
+                          style: TextStyle(
+                            color: Colors.white, // Cor do texto do botão
+                            fontSize: 18, // Tamanho da fonte
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Confirmar Email:',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    SizedBox(height: 12),
-                    Container(
-                      width: screenWidth - 290,
-                      height: 27,
-                      child: TextField(
-                        controller: passwordController,
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromRGBO(210, 236, 255, 1),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromRGBO(0, 163, 255, 1),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.zero,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(vertical: 5.0),
-                        ),
-                        obscureText: true,
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                  // Textos Selecionáveis
+                  SizedBox(height: 30), // Espaçamento de 15px abaixo do botão
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25), // Mesma distância da borda que o botão
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, // Alinhado à esquerda
                       children: [
-                        HoverButton(
-                          text: 'Confirmar',
-                          onPressed: () {
-                            print('Digite seu E-mail: ${usernameController.text}');
-                            print('Confirmar Email: ${passwordController.text}');
+                        // Texto "Esqueci minha senha" com efeito de hover
+                        HoverText(
+                          text: 'Esqueci minha senha',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, secondaryAnimation) => ForgotPasswordScreen(),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
                           },
                         ),
-                        SizedBox(width: 15),
-                        HoverButton(
-                          text: 'Limpar',
-                          onPressed: () {
-                            usernameController.clear();
-                            passwordController.clear();
+                        SizedBox(height: 2), // Espaçamento de 2px entre os textos
+                        HoverText(
+                          text: 'Cadastre-se',
+                          onTap: () {
+                            // Navegando para a tela de cadastro
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => CadastroScreen()),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 2), // Espaçamento de 2px entre os textos
+                        HoverText(
+                          text: 'Suporte',
+                          onTap: () {
+                            // Ação para "Suporte"
                           },
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ),
-          SizedBox(height: 75),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/forgot-password');  // Navega para a nova tela
-            },
-            child: Text(
-              'Esqueci minha senha',
-              style: TextStyle(
-                color: Color.fromRGBO(64, 106, 255, 1),
-                fontSize: 16,
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          TextButton(
-            onPressed: () {
-              print('Link clicado: Suporte');
-            },
-            child: Text(
-              'Suporte',
-              style: TextStyle(
-                color: Color.fromRGBO(64, 106, 255, 1),
-                fontSize: 16,
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          TextButton(
-            onPressed: () {
-              print('Link clicado: Voltar');
-            },
-            child: Text(
-              'Voltar',
-              style: TextStyle(
-                color: Color.fromRGBO(64, 106, 255, 1),
-                fontSize: 16,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: controller.loading
-                  ? CircularProgressIndicator()
-                  : controller.data != null
-                      ? Text(controller.data!.title)
-                      : Text(''),
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.fetchData();
-        },
-        child: Icon(Icons.refresh),
+          ],
+        ),
       ),
     );
   }
 }
 
-class HoverButton extends StatefulWidget {
+// Classe reutilizável para adicionar o efeito de hover nos textos
+class HoverText extends StatefulWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback onTap;
 
-  const HoverButton({required this.text, required this.onPressed, Key? key})
-      : super(key: key);
+  const HoverText({required this.text, required this.onTap});
 
   @override
-  _HoverButtonState createState() => _HoverButtonState();
+  _HoverTextState createState() => _HoverTextState();
 }
 
-class _HoverButtonState extends State<HoverButton> {
-  Color _color = Color.fromRGBO(202, 52, 95, 0.35);
+class _HoverTextState extends State<HoverText> {
+  bool _isHovering = false; // Estado para verificar se o mouse está sobre o texto
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (_) {
         setState(() {
-          _color = Color.fromRGBO(202, 52, 95, 0.5);
+          _isHovering = true;
         });
       },
       onExit: (_) {
         setState(() {
-          _color = Color.fromRGBO(202, 52, 95, 0.35);
+          _isHovering = false;
         });
       },
       child: GestureDetector(
-        onTap: () {
-          setState(() {
-            _color = Color.fromRGBO(202, 52, 95, 0.7);
-          });
-          widget.onPressed();
-          Future.delayed(Duration(milliseconds: 100), () {
-            setState(() {
-              _color = Color.fromRGBO(202, 52, 95, 0.35);
-            });
-          });
-        },
-        child: Container(
-          width: 110,
-          height: 25,
-          decoration: BoxDecoration(
-            color: _color,
-            border: Border.all(color: Color.fromRGBO(202, 52, 95, 1), width: 1),
-            borderRadius: BorderRadius.zero,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.7),
-                spreadRadius: 1,
-                blurRadius: 7,
-                offset: Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Center(
-            child: Text(
-              widget.text,
-              style: TextStyle(color: Colors.black),
-            ),
+        onTap: widget.onTap,
+        child: Text(
+          widget.text,
+          style: TextStyle(
+            color: _isHovering ? Colors.blue : Colors.black, // Muda a cor ao passar o mouse
+            fontSize: 14,
+            decoration: TextDecoration.underline, // Sublinhado
           ),
         ),
       ),
