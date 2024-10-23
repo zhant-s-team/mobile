@@ -1,164 +1,103 @@
 import 'package:flutter/material.dart';
-import '../styles/app_styles.dart';
+import '../styles/app_styles.dart'; // Importando o estilo
 
-class AppHomePage extends StatefulWidget {
-  @override
-  _AppHomePageState createState() => _AppHomePageState();
-}
-
-class _AppHomePageState extends State<AppHomePage> {
-  bool isHoveringFretes = false;
-  bool isHoveringPerfil = false;
-  bool isHoveringSuporte = false;
-
+class AppHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor,
-      appBar: AppStyles.buildHeader(title: 'Fretes Disponíveis'),
-      body: Column(
+      backgroundColor: AppStyles.backgroundColor, // Cor de fundo RGB(255, 255, 255, 1)
+      body: Stack(
         children: [
-          // Menu Superior
-          Container(
-            height: 35, // Altura do menu
-            color: Colors.transparent, // Cor de fundo transparente
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Espaçamento dinâmico
-              children: [
-                // Opção Fretes com destaque e animação
-                Expanded(
-                  child: MouseRegion(
-                    onEnter: (_) => setState(() => isHoveringFretes = true),
-                    onExit: (_) => setState(() => isHoveringFretes = false),
-                    child: InkWell(
-                      onTap: () {
-                        // Ação ao clicar em "Fretes"
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 200),
-                        height: 35,
-                        decoration: BoxDecoration(
-                          color: isHoveringFretes
-                              ? Colors.greenAccent.shade100
-                              : Color.fromRGBO(184, 244, 190, 1), // Cor de fundo do destaque
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Fretes',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                // Opção Perfil com animação
-                Expanded(
-                  child: MouseRegion(
-                    onEnter: (_) => setState(() => isHoveringPerfil = true),
-                    onExit: (_) => setState(() => isHoveringPerfil = false),
-                    child: InkWell(
-                      onTap: () {
-                        // Ação ao clicar em "Perfil"
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 200),
-                        height: 35,
-                        decoration: BoxDecoration(
-                          color: isHoveringPerfil
-                              ? Colors.blueGrey.shade200
-                              : Color.fromRGBO(217, 217, 217, 1),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Perfil',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                // Opção Suporte com animação
-                Expanded(
-                  child: MouseRegion(
-                    onEnter: (_) => setState(() => isHoveringSuporte = true),
-                    onExit: (_) => setState(() => isHoveringSuporte = false),
-                    child: InkWell(
-                      onTap: () {
-                        // Ação ao clicar em "Suporte"
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 200),
-                        height: 35,
-                        decoration: BoxDecoration(
-                          color: isHoveringSuporte
-                              ? Colors.blueGrey.shade200
-                              : Color.fromRGBO(217, 217, 217, 1),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Suporte',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+          // Texto "Marcelo" no canto superior esquerdo
+          Positioned(
+            top: 20.0,
+            left: 15.0, 
+            child: Text(
+              'Marcelo',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-
-          // Retângulo branco com containers colado abaixo das opções
-          Container(
-            height: 85, // Altura do retângulo ajustada para 85px
-            width: double.infinity, // Largura máxima da tela
-            color: Color.fromRGBO(255, 255, 255, 1), // Cor branca
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Alinhamento vertical central
-              children: [
-                // Primeira linha com 3 containers
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Distribuição uniforme na largura
-                  children: [
-                    for (int i = 0; i < 3; i++) // 3 containers na primeira linha
-                      Expanded(
-                        child: Container(
-                          height: 35,
-                          margin: EdgeInsets.symmetric(horizontal: 2), // Espaçamento horizontal de 2px
-                          color: Color.fromRGBO(255, 150, 91, 1), // Cor laranja
-                        ),
-                      ),
-                  ],
-                ),
-                SizedBox(height: 4), // Espaçamento de 4px entre as linhas (ajustado)
-
-                // Segunda linha com 3 containers
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Distribuição uniforme na largura
-                  children: [
-                    for (int i = 0; i < 3; i++) // 3 containers na segunda linha
-                      Expanded(
-                        child: Container(
-                          height: 35,
-                          margin: EdgeInsets.symmetric(horizontal: 2), // Espaçamento horizontal de 2px
-                          color: Color.fromRGBO(255, 150, 91, 1), // Cor laranja
-                        ),
-                      ),
-                  ],
-                ),
-              ],
+          // Ícone de headphone no canto superior direito
+          Positioned(
+            top: 10.0, 
+            right: 10.0, 
+            child: Icon(
+              Icons.headphones, 
+              size: 48.0, 
+              color: Colors.black,
             ),
           ),
-
-          // O restante do corpo da página
-          Expanded(
+          // Primeira linha abaixo dos elementos
+          Positioned(
+            top: 80.0, 
+            left: 20.0, 
+            right: 20.0, 
+            child: Container(
+              height: 1.0, // Mantendo a linha fina
+              color: Color(0xFFD9D9D9),
+            ),
+          ),
+          // Texto "Fretes Disponíveis" centralizado entre as linhas
+          Positioned(
+            top: 105.0, 
+            left: 0,
+            right: 0,
             child: Center(
-              child: Text('Conteúdo da página inicial aqui.'),
+              child: Text(
+                'Fretes Disponíveis',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+          // Segunda linha abaixo do texto
+          Positioned(
+            top: 160.0, 
+            left: 20.0, 
+            right: 20.0, 
+            child: Container(
+              height: 1.0, 
+              color: Color(0xFFD9D9D9),
+            ),
+          ),
+          // Adicionando 6 containers em Wrap
+          Positioned(
+            top: 175.0,
+            left: 9.0,
+            right: 7.0,
+            child: Wrap(
+              spacing: 5.0, 
+              runSpacing: 5.0, 
+              children: List.generate(6, (index) {
+                return Container(
+                  width: (MediaQuery.of(context).size.width - 26) / 3,
+                  height: 40.0, 
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFF965B),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                );
+              }),
+            ),
+          ),
+          // Container adicional abaixo dos 6 containers com pontas arredondadas
+          Positioned(
+            top: 275.0, // Mantendo a posição após os 6 containers
+            left: 7.0,
+            right: 7.0,
+            child: Container(
+              height: 235.0,
+              decoration: BoxDecoration(
+                color: Color(0xFFD9D9D9),
+                borderRadius: BorderRadius.circular(8.0), // Pontas levemente arredondadas
+              ),
             ),
           ),
         ],

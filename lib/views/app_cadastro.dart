@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao/main.dart';
 import '../styles/app_styles.dart'; // Importando o estilo
 
 class CadastroScreen extends StatelessWidget {
@@ -185,42 +186,66 @@ class CadastroScreen extends StatelessWidget {
                 SizedBox(height: 25),
 
                 // Botão de Confirmar
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Ação para cadastrar o usuário
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      minimumSize: Size(double.infinity, 50), // Largura do botão
-                    ),
-                    child: Text(
-                      'Confirmar',
-                      style: TextStyle(color: Colors.white),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Redirecionar para a tela app_homepage.dart ao pressionar o botão "Entrar"
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyApp()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
+                        padding: EdgeInsets.symmetric(vertical: 15), // Tamanho do botão
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Cadastrar',
+                          style: TextStyle(
+                            color: Colors.white, // Cor do texto do botão
+                            fontSize: 18, // Tamanho da fonte
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                
-                SizedBox(height: 10), // Espaçamento entre os botões
+
+                SizedBox(height: 10), // Espaçamento de 10 pixels entre os botões
 
                 // Botão de Limpar
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Ação para limpar os campos
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      minimumSize: Size(double.infinity, 50), // Largura do botão
-                    ),
-                    child: Text(
-                      'Limpar',
-                      style: TextStyle(color: Colors.white),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Redirecionar para a tela app_homepage.dart ao pressionar o botão "Entrar"
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => CadastroScreen()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
+                        padding: EdgeInsets.symmetric(vertical: 15), // Tamanho do botão
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Limpar',
+                          style: TextStyle(
+                            color: Colors.white, // Cor do texto do botão
+                            fontSize: 18, // Tamanho da fonte
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),
