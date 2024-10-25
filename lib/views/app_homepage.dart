@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../styles/app_styles.dart'; // Importando o estilo
 
 class AppHomePage extends StatefulWidget {
@@ -8,6 +9,27 @@ class AppHomePage extends StatefulWidget {
 
 class _AppHomePageState extends State<AppHomePage> {
   bool _isOverlayVisible = false; // Variável para controlar a visibilidade da tela sobreposta
+  bool _isAccepted = false; // Variável para controlar o ícone de aceitação
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAcceptanceStatus(); // Carregar o estado de aceitação ao iniciar
+  }
+
+  // Método para carregar o status de aceitação salvo
+  Future<void> _loadAcceptanceStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isAccepted = prefs.getBool('isAccepted') ?? false; // Carrega o valor salvo
+    });
+  }
+
+  // Método para salvar o status de aceitação
+  Future<void> _saveAcceptanceStatus(bool status) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isAccepted', status);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +37,6 @@ class _AppHomePageState extends State<AppHomePage> {
       backgroundColor: AppStyles.backgroundColor, // Cor de fundo RGB(255, 255, 255, 1)
       body: Stack(
         children: [
-          // Conteúdo principal da página
           Positioned(
             top: 20.0,
             left: 15.0,
@@ -28,7 +49,6 @@ class _AppHomePageState extends State<AppHomePage> {
               ),
             ),
           ),
-          // Ícone de headphone no canto superior direito
           Positioned(
             top: 10.0,
             right: 10.0,
@@ -38,7 +58,6 @@ class _AppHomePageState extends State<AppHomePage> {
               color: Colors.black,
             ),
           ),
-          // Primeira linha abaixo dos elementos
           Positioned(
             top: 80.0,
             left: 20.0,
@@ -48,7 +67,6 @@ class _AppHomePageState extends State<AppHomePage> {
               color: Color(0xFFD9D9D9),
             ),
           ),
-          // Texto "Fretes Disponíveis" centralizado
           Positioned(
             top: 105.0,
             left: 0,
@@ -64,7 +82,6 @@ class _AppHomePageState extends State<AppHomePage> {
               ),
             ),
           ),
-          // Segunda linha abaixo do texto
           Positioned(
             top: 160.0,
             left: 20.0,
@@ -74,7 +91,6 @@ class _AppHomePageState extends State<AppHomePage> {
               color: Color(0xFFD9D9D9),
             ),
           ),
-          // Adicionando 6 containers
           Positioned(
             top: 175.0,
             left: 9.0,
@@ -94,20 +110,18 @@ class _AppHomePageState extends State<AppHomePage> {
               }),
             ),
           ),
-          // Container com imagem e botão "Ver Mais"
           Positioned(
             top: 275.0,
             left: 7.0,
             right: 7.0,
             child: Container(
-              height: 240.0, // Ajuste de altura para acomodar o texto
+              height: 240.0,
               decoration: BoxDecoration(
                 color: Color(0xFFD9D9D9),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Stack(
                 children: [
-                  // Texto dentro do container
                   Positioned(
                     top: 5.0,
                     left: 10.0,
@@ -119,9 +133,8 @@ class _AppHomePageState extends State<AppHomePage> {
                       ),
                     ),
                   ),
-                  // Imagem dentro do container
                   Positioned(
-                    top: 30.0, // 5px abaixo do texto
+                    top: 30.0,
                     left: 0,
                     right: 0,
                     child: Center(
@@ -136,9 +149,8 @@ class _AppHomePageState extends State<AppHomePage> {
                       ),
                     ),
                   ),
-                  // Quatro textos abaixo da imagem
                   Positioned(
-                    top: 134.0, // 7px abaixo da imagem
+                    top: 134.0,
                     left: 10.0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,30 +189,36 @@ class _AppHomePageState extends State<AppHomePage> {
                       ],
                     ),
                   ),
-                  // Botão "Ver Mais"
                   Positioned(
-                    top: 160.0, // 40px abaixo da imagem
+                    top: 160.0,
                     right: 20.0,
                     child: SizedBox(
-                      width: 120.0, // Largura do botão
-                      height: 40.0, // Altura do botão
-                      child: ElevatedButton(
+                      width: 140.0,
+                      height: 40.0,
+                      child: ElevatedButton.icon(
                         onPressed: () {
                           setState(() {
-                            _isOverlayVisible = true; // Mostra a tela sobreposta
+                            _isOverlayVisible = true;
                           });
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(44, 44, 44, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                        child: Text(
+                        icon: _isAccepted
+                            ? Icon(
+                                Icons.check,
+                                color: Colors.green,
+                                size: 20.0,
+                              )
+                            : SizedBox.shrink(),
+                        label: Text(
                           'Ver Mais',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14.0,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(44, 44, 44, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
@@ -210,26 +228,135 @@ class _AppHomePageState extends State<AppHomePage> {
               ),
             ),
           ),
-          // Tela sobreposta
           if (_isOverlayVisible)
             Positioned.fill(
               child: Container(
-                color: Color.fromRGBO(255, 255, 255, 0.9), // Tela levemente transparente
+                color: Color.fromRGBO(185, 185, 185, 0.894),
                 child: Stack(
                   children: [
-                    // Botão "X" no canto superior direito
                     Positioned(
                       top: 20.0,
                       right: 20.0,
                       child: IconButton(
                         icon: Icon(Icons.close),
                         color: Colors.black,
-                        iconSize: 30.0, // Tamanho do botão "X"
+                        iconSize: 30.0,
                         onPressed: () {
                           setState(() {
-                            _isOverlayVisible = false; // Esconde a tela sobreposta
+                            _isOverlayVisible = false;
                           });
                         },
+                      ),
+                    ),
+                    Positioned(
+                      top: 60.0,
+                      left: 30.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Empresa: Local Fretes',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            'Cidade: Piracicaba',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            'Destino: Tupi Paulista',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            'Estado: Médio',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            'Porte do Veículo: Médio',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            'Tipo de Carga: Médio',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            'Distância de Trajeto: 354 Km',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            'Endereço: Rua do Porto, 123, Centro',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 50.0, // 50px acima da parte de baixo da tela
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: SizedBox(
+                          width: 160.0,
+                          height: 40.0,
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              setState(() {
+                                _isAccepted = true; // Define o estado de aceitação
+                                _saveAcceptanceStatus(_isAccepted); // Salva o estado
+                              });
+                            },
+                            icon: _isAccepted
+                                ? Icon(
+                                    Icons.check,
+                                    color: Colors.green,
+                                    size: 20.0,
+                                  )
+                                : SizedBox.shrink(), // Ícone condicional
+                            label: Text(
+                              'Aceitar Frete',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(44, 44, 44, 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
