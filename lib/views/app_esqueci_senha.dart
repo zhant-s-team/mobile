@@ -124,21 +124,26 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start, // Alinhado à esquerda
                       children: [
-                        // Texto "Suporte" com efeito de hover
+                        // Texto "Suporte" com pop-up
                         HoverText(
                           text: 'Suporte',
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (context, animation, secondaryAnimation) => ForgotPasswordScreen(),
-                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  return FadeTransition(
-                                    opacity: animation,
-                                    child: child,
-                                  );
-                                },
-                              ),
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Relatar problema"),
+                                  content: Text("Email: viacargo@email.com"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text("Fechar"),
+                                    ),
+                                  ],
+                                );
+                              },
                             );
                           },
                         ),

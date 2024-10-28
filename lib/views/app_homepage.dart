@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../styles/app_styles.dart'; // Importando o estilo
 import 'app_perfil_user.dart'; // Importa a nova tela de perfil de usuário
+import 'app_suporte.dart';
 
 class AppHomePage extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class _AppHomePageState extends State<AppHomePage> {
   bool _isOverlayVisible = false; // Variável para controlar a visibilidade da tela sobreposta
   bool _isAccepted = false; // Variável para controlar o ícone de aceitação
   bool _isHovering = false; // Variável para controlar o efeito de hover
+  bool _isHeadphonesHovering = false; // Variável para controlar o hover dos headphones
 
   @override
   void initState() {
@@ -77,10 +79,32 @@ class _AppHomePageState extends State<AppHomePage> {
           Positioned(
             top: 10.0,
             right: 10.0,
-            child: Icon(
-              Icons.headphones,
-              size: 48.0,
-              color: Colors.black,
+            child: MouseRegion(
+              onEnter: (_) {
+                setState(() {
+                  _isHeadphonesHovering = true;
+                });
+              },
+              onExit: (_) {
+                setState(() {
+                  _isHeadphonesHovering = false;
+                });
+              },
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AppSuport(),
+                    ),
+                  );
+                },
+                child: Icon(
+                  Icons.headphones,
+                  size: 48.0,
+                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                ),
+              ),
             ),
           ),
           Positioned(

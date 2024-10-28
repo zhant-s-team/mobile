@@ -163,7 +163,24 @@ class HomeScreen extends StatelessWidget {
                         HoverText(
                           text: 'Suporte',
                           onTap: () {
-                            // Ação para "Suporte"
+                            // Exibindo o pop-up ao pressionar "Suporte"
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Relatar problema"),
+                                  content: Text("Email: viacargo@email.com"),
+                                  actions: [
+                                    TextButton(
+                                      child: Text("Fechar"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                         ),
                       ],

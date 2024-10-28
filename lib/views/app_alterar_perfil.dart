@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../styles/app_styles.dart';
 import 'app_perfil_user.dart'; 
+import 'app_suporte.dart';
 
 class AppChangePerfil extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class AppChangePerfil extends StatefulWidget {
 
 class _AppChangePerfilState extends State<AppChangePerfil> {
   bool _isHovering = false; // Variável para controlar o efeito de hover
+  bool _isHeadphonesHovering = false; // Variável para controlar o hover dos headphones
 
   @override
   void initState() {
@@ -61,10 +63,32 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
           Positioned(
             top: 10.0,
             right: 10.0,
-            child: Icon(
-              Icons.headphones,
-              size: 48.0,
-              color: Colors.black,
+            child: MouseRegion(
+              onEnter: (_) {
+                setState(() {
+                  _isHeadphonesHovering = true;
+                });
+              },
+              onExit: (_) {
+                setState(() {
+                  _isHeadphonesHovering = false;
+                });
+              },
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AppSuport(),
+                    ),
+                  );
+                },
+                child: Icon(
+                  Icons.headphones,
+                  size: 48.0,
+                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                ),
+              ),
             ),
           ),
 

@@ -126,23 +126,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start, // Alinhado à esquerda
                       children: [
                         // Texto "Suporte" com efeito de hover
-                        HoverText(
-                          text: 'Suporte',
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (context, animation, secondaryAnimation) => PasswordScreen(),
-                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  return FadeTransition(
-                                    opacity: animation,
-                                    child: child,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
+                        
                         SizedBox(height: 2), // Espaçamento de 2px entre os textos
                         HoverText(
                           text: 'Voltar',

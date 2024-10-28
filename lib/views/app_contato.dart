@@ -1,49 +1,19 @@
 import 'package:flutter/material.dart';
-import '../styles/app_styles.dart'; // Importando o estilo
-import 'app_homepage.dart';
-import 'app_alterar_senha.dart'; // Importando o arquivo de Alterar Senha
-import 'app_alterar_perfil.dart'; // Importando a página de Alterar Perfil
+import '../styles/app_styles.dart';
 import 'app_suporte.dart';
 
-class AppPerfilUser extends StatefulWidget {
-  final bool showPasswordChangedPopup;
-
-  const AppPerfilUser({Key? key, this.showPasswordChangedPopup = false}) : super(key: key);
-
+class Appcontact extends StatefulWidget {
   @override
-  _AppPerfilUserState createState() => _AppPerfilUserState();
+  _AppcontactState createState() => _AppcontactState();
 }
 
-class _AppPerfilUserState extends State<AppPerfilUser> {
+class _AppcontactState extends State<Appcontact> {
   bool _isHovering = false; // Variável para controlar o efeito de hover
   bool _isHeadphonesHovering = false; // Variável para controlar o hover dos headphones
-  
+
   @override
   void initState() {
     super.initState();
-
-    // Exibe o pop-up se showPasswordChangedPopup for verdadeiro
-    if (widget.showPasswordChangedPopup) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Aviso"),
-              content: Text("Senha Alterada!"),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("OK"),
-                ),
-              ],
-            );
-          },
-        );
-      });
-    }
   }
 
   @override
@@ -72,7 +42,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppHomePage(),
+                      builder: (context) => AppSuport(),
                     ),
                   );
                 },
@@ -132,14 +102,14 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
             ),
           ),
 
-          // Título centralizado "Configurar usuário"
+          // Título centralizado "Solicitação de alteração de perfil"
           Positioned(
             top: 105.0,
             left: 0,
             right: 0,
             child: Center(
               child: Text(
-                'Configurar usuário',
+                'Contato',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -160,60 +130,75 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
             ),
           ),
 
-          // Botões centralizados na tela
-          Center(
+          // Campos de texto no centro da tela
+          Positioned(
+            top: 280.0, // Posição vertical inicial
+            left: MediaQuery.of(context).size.width * 0.5 - 150, // Centraliza horizontalmente
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Botão "Alterar Senha"
-                Container(
-                  width: 300.0,
-                  height: 40.0,
-                  margin: EdgeInsets.only(bottom: 10.0), // Espaçamento de 10px entre os botões
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      // Navegação para a tela de alterar senha
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PasswordScreen(),
-                        ),
-                      );
-                    },
+                // Texto acima do primeiro campo
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0), // Alinhado à borda esquerda
                     child: Text(
-                      "Alterar Senha",
-                      style: TextStyle(color: Colors.black),
+                      'Email',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
-
-                // Botão "Alterar Perfil"
+                // Primeiro campo de texto
                 Container(
-                  width: 300.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: Colors.grey),
+                  width: 300, // Largura do campo
+                  height: 40, // Altura do campo
+                  child: TextField(
+                    controller: TextEditingController(text: "viacargo@email.com"),
+                    readOnly: true, // Campo não editável
+                    textAlign: TextAlign.center, // Centraliza o texto dentro do campo
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8), // Bordas arredondadas
+                        borderSide: BorderSide(color: Colors.grey), // Bordas cinzas
+                      ),
+                    ),
                   ),
-                  child: TextButton(
-                    onPressed: () {
-                      // Navegação para a tela de alterar perfil
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AppChangePerfil(), // Redireciona para AppChangePerfil
-                        ),
-                      );
-                    },
+                ),
+                SizedBox(height: 20), // Espaçamento entre os campos
+                // Texto acima do segundo campo
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0), // Alinhado à borda esquerda
                     child: Text(
-                      "Alterar Perfil",
-                      style: TextStyle(color: Colors.black),
+                      'WhatsApp',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                // Segundo campo de texto
+                Container(
+                  width: 300, // Largura do campo
+                  height: 40, // Altura do campo
+                  child: TextField(
+                    controller: TextEditingController(text: "99 8877-6655"),
+                    readOnly: true, // Campo não editável
+                    textAlign: TextAlign.center, // Centraliza o texto dentro do campo
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8), // Bordas arredondadas
+                        borderSide: BorderSide(color: Colors.grey), // Bordas cinzas
+                      ),
                     ),
                   ),
                 ),
