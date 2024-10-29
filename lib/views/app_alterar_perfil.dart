@@ -179,7 +179,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                 ),
                 Container(
                   width: 300, 
-                  height: 40, /
+                  height: 40, 
                   child: TextField(
                     controller: TextEditingController(text: "99 8877-6655"),
                     readOnly: true, 

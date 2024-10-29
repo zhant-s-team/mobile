@@ -9,6 +9,7 @@ class AppRelatarProblem extends StatefulWidget {
 
 class _AppRelatarProblemState extends State<AppRelatarProblem> {
   bool _isHovering = false; 
+  bool _isHeadphonesHovering = false; 
 
   final TextEditingController campo1Controller = TextEditingController();
   final TextEditingController campo2Controller = TextEditingController();

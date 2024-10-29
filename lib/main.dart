@@ -51,7 +51,8 @@ class HomeScreen extends StatelessWidget {
                   width: 1,
                 ),
                 borderRadius: BorderRadius.circular(8), 
-              child: Column(
+              ),
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start, 
                 children: [
                   Padding(
