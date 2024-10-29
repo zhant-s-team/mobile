@@ -14,13 +14,12 @@ class AppSuport extends StatefulWidget {
 }
 
 class _AppSuportState extends State<AppSuport> {
-  bool _isHovering = false; // Variável para controlar o efeito de hover
+  bool _isHovering = false; 
   
   @override
   void initState() {
     super.initState();
 
-    // Exibe o pop-up se showPasswordChangedPopup for verdadeiro
     if (widget.showPasswordChangedPopup) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         showDialog(
@@ -47,10 +46,9 @@ class _AppSuportState extends State<AppSuport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor, // Cor de fundo RGB(255, 255, 255, 1)
+      backgroundColor: AppStyles.backgroundColor, 
       body: Stack(
         children: [
-          // Botão de "Voltar" com efeito de hover
           Positioned(
             top: 20.0,
             left: 15.0,
@@ -78,7 +76,7 @@ class _AppSuportState extends State<AppSuport> {
                   '<- Voltar',
                   style: TextStyle(
                     fontSize: 20,
-                    color: _isHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                    color: _isHovering ? Colors.blue : Colors.black, 
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -86,7 +84,6 @@ class _AppSuportState extends State<AppSuport> {
             ),
           ),
 
-          // Ícone de fones de ouvido
           Positioned(
             top: 10.0,
             right: 10.0,
@@ -97,7 +94,6 @@ class _AppSuportState extends State<AppSuport> {
             ),
           ),
 
-          // Linha divisória superior
           Positioned(
             top: 80.0,
             left: 20.0,
@@ -108,7 +104,6 @@ class _AppSuportState extends State<AppSuport> {
             ),
           ),
 
-          // Título centralizado "Configurar usuário"
           Positioned(
             top: 105.0,
             left: 0,
@@ -125,7 +120,6 @@ class _AppSuportState extends State<AppSuport> {
             ),
           ),
 
-          // Linha divisória abaixo do título
           Positioned(
             top: 160.0,
             left: 20.0,
@@ -136,16 +130,14 @@ class _AppSuportState extends State<AppSuport> {
             ),
           ),
 
-          // Botões centralizados na tela
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Botão "Alterar Senha"
                 Container(
                   width: 300.0,
                   height: 40.0,
-                  margin: EdgeInsets.only(bottom: 10.0), // Espaçamento de 10px entre os botões
+                  margin: EdgeInsets.only(bottom: 10.0), 
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8.0),
@@ -153,7 +145,6 @@ class _AppSuportState extends State<AppSuport> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      // Navegação para a tela de alterar senha
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -168,7 +159,6 @@ class _AppSuportState extends State<AppSuport> {
                   ),
                 ),
 
-                // Botão "Alterar Perfil"
                 Container(
                   width: 300.0,
                   height: 40.0,
@@ -179,11 +169,10 @@ class _AppSuportState extends State<AppSuport> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      // Navegação para a tela de alterar perfil
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Appcontact(), // Redireciona para AppChangePerfil
+                          builder: (context) => Appcontact(), 
                         ),
                       );
                     },

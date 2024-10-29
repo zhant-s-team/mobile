@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:gestao/main.dart';
-import '../styles/app_styles.dart'; // Importando o estilo
+import '../styles/app_styles.dart'; 
 
 class CadastroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
-      appBar: AppStyles.buildHeader(title: 'Cadastro'), // Cabeçalho reutilizável
+      appBar: AppStyles.buildHeader(title: 'Cadastro'), 
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0), // Distância da borda lateral
-        child: SingleChildScrollView( // Adicionado para permitir rolagem
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0), 
+        child: SingleChildScrollView( 
           child: Container(
             decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 255, 255, 1), // Cor do fundo
+              color: Color.fromRGBO(255, 255, 255, 1), 
               border: Border.all(
-                color: Color.fromRGBO(217, 217, 217, 1), // Cor da borda
-                width: 1, // Largura da borda
+                color: Color.fromRGBO(217, 217, 217, 1), 
+                width: 1, 
               ),
-              borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+              borderRadius: BorderRadius.circular(8), 
             ),
-            padding: const EdgeInsets.all(5.0), // Distância interna do container
+            padding: const EdgeInsets.all(5.0), 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Campo Nome
+                
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0), // Distância inferior e lateral ajustada
+                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0), 
                   child: Text('Nome'),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0), // Distância lateral de 20 pixels
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0), 
                   child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -38,9 +38,9 @@ class CadastroScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 25), // Espaçamento entre os campos
+                SizedBox(height: 25), 
 
-                // Campo Email
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Email'),
@@ -56,7 +56,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo Senha
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Senha'),
@@ -73,7 +73,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo CPF
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('CPF'),
@@ -89,7 +89,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo Telefone
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Telefone'),
@@ -105,7 +105,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo Data Nascimento
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Data Nascimento'),
@@ -121,7 +121,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo CEP
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('CEP'),
@@ -137,7 +137,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo Estado
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Estado'),
@@ -153,7 +153,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo Bairro
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Bairro'),
@@ -169,7 +169,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Campo Rua
+                
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Rua'),
@@ -185,62 +185,61 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 25),
 
-                // Botão de Confirmar
+                
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: ElevatedButton(
                       onPressed: () {
-                        // Redirecionar para a tela app_homepage.dart ao pressionar o botão "Entrar"
+                        
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => MyApp()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
-                        padding: EdgeInsets.symmetric(vertical: 15), // Tamanho do botão
+                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
+                        padding: EdgeInsets.symmetric(vertical: 15), 
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+                          borderRadius: BorderRadius.circular(8), 
                         ),
                       ),
                       child: Center(
                         child: Text(
                           'Cadastrar',
                           style: TextStyle(
-                            color: Colors.white, // Cor do texto do botão
-                            fontSize: 18, // Tamanho da fonte
+                            color: Colors.white, 
+                            fontSize: 18, 
                           ),
                         ),
                       ),
                     ),
                   ),
 
-                SizedBox(height: 10), // Espaçamento de 10 pixels entre os botões
+                SizedBox(height: 10), 
 
-                // Botão de Limpar
+                
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: ElevatedButton(
                       onPressed: () {
-                        // Redirecionar para a tela app_homepage.dart ao pressionar o botão "Entrar"
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => CadastroScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
-                        padding: EdgeInsets.symmetric(vertical: 15), // Tamanho do botão
+                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
+                        padding: EdgeInsets.symmetric(vertical: 15), 
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+                          borderRadius: BorderRadius.circular(8), 
                         ),
                       ),
                       child: Center(
                         child: Text(
                           'Limpar',
                           style: TextStyle(
-                            color: Colors.white, // Cor do texto do botão
-                            fontSize: 18, // Tamanho da fonte
+                            color: Colors.white, 
+                            fontSize: 18, 
                           ),
                         ),
                       ),

@@ -8,8 +8,8 @@ class Appcontact extends StatefulWidget {
 }
 
 class _AppcontactState extends State<Appcontact> {
-  bool _isHovering = false; // Variável para controlar o efeito de hover
-  bool _isHeadphonesHovering = false; // Variável para controlar o hover dos headphones
+  bool _isHovering = false; 
+  bool _isHeadphonesHovering = false; 
 
   @override
   void initState() {
@@ -19,10 +19,9 @@ class _AppcontactState extends State<Appcontact> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor, // Cor de fundo RGB(255, 255, 255, 1)
+      backgroundColor: AppStyles.backgroundColor, 
       body: Stack(
         children: [
-          // Botão de "Voltar" com efeito de hover
           Positioned(
             top: 20.0,
             left: 15.0,
@@ -50,7 +49,7 @@ class _AppcontactState extends State<Appcontact> {
                   '<- Voltar',
                   style: TextStyle(
                     fontSize: 20,
-                    color: _isHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                    color: _isHovering ? Colors.blue : Colors.black, 
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -58,7 +57,6 @@ class _AppcontactState extends State<Appcontact> {
             ),
           ),
 
-          // Ícone de fones de ouvido
           Positioned(
             top: 10.0,
             right: 10.0,
@@ -85,13 +83,12 @@ class _AppcontactState extends State<Appcontact> {
                 child: Icon(
                   Icons.headphones,
                   size: 48.0,
-                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, 
                 ),
               ),
             ),
           ),
 
-          // Linha divisória superior
           Positioned(
             top: 80.0,
             left: 20.0,
@@ -102,7 +99,6 @@ class _AppcontactState extends State<Appcontact> {
             ),
           ),
 
-          // Título centralizado "Solicitação de alteração de perfil"
           Positioned(
             top: 105.0,
             left: 0,
@@ -119,7 +115,6 @@ class _AppcontactState extends State<Appcontact> {
             ),
           ),
 
-          // Linha divisória abaixo do título
           Positioned(
             top: 160.0,
             left: 20.0,
@@ -130,18 +125,16 @@ class _AppcontactState extends State<Appcontact> {
             ),
           ),
 
-          // Campos de texto no centro da tela
           Positioned(
-            top: 280.0, // Posição vertical inicial
-            left: MediaQuery.of(context).size.width * 0.5 - 150, // Centraliza horizontalmente
+            top: 280.0, 
+            left: MediaQuery.of(context).size.width * 0.5 - 150, 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Texto acima do primeiro campo
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0), // Alinhado à borda esquerda
+                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0), 
                     child: Text(
                       'Email',
                       style: TextStyle(
@@ -151,30 +144,29 @@ class _AppcontactState extends State<Appcontact> {
                     ),
                   ),
                 ),
-                // Primeiro campo de texto
+                
                 Container(
-                  width: 300, // Largura do campo
-                  height: 40, // Altura do campo
+                  width: 300, 
+                  height: 40, 
                   child: TextField(
                     controller: TextEditingController(text: "viacargo@email.com"),
-                    readOnly: true, // Campo não editável
-                    textAlign: TextAlign.center, // Centraliza o texto dentro do campo
+                    readOnly: true, 
+                    textAlign: TextAlign.center, 
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8), // Bordas arredondadas
-                        borderSide: BorderSide(color: Colors.grey), // Bordas cinzas
+                        borderRadius: BorderRadius.circular(8), 
+                        borderSide: BorderSide(color: Colors.grey), 
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 20), // Espaçamento entre os campos
-                // Texto acima do segundo campo
+                SizedBox(height: 20), 
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0), // Alinhado à borda esquerda
+                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0),
                     child: Text(
                       'WhatsApp',
                       style: TextStyle(
@@ -184,20 +176,19 @@ class _AppcontactState extends State<Appcontact> {
                     ),
                   ),
                 ),
-                // Segundo campo de texto
                 Container(
-                  width: 300, // Largura do campo
-                  height: 40, // Altura do campo
+                  width: 300, 
+                  height: 40, 
                   child: TextField(
                     controller: TextEditingController(text: "99 8877-6655"),
-                    readOnly: true, // Campo não editável
-                    textAlign: TextAlign.center, // Centraliza o texto dentro do campo
+                    readOnly: true, 
+                    textAlign: TextAlign.center, 
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8), // Bordas arredondadas
-                        borderSide: BorderSide(color: Colors.grey), // Bordas cinzas
+                        borderRadius: BorderRadius.circular(8), 
+                        borderSide: BorderSide(color: Colors.grey), 
                       ),
                     ),
                   ),

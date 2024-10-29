@@ -3,7 +3,7 @@ import 'package:gestao/models/app_model.dart';
 import 'package:provider/provider.dart';
 import '../controllers/app_controller.dart';
 import '../styles/app_styles.dart';
-import '../../main.dart'; // Importando a tela principal
+import '../../main.dart'; 
 
 class ForgotPasswordScreen extends StatelessWidget {
   @override
@@ -24,107 +24,98 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
-      appBar: AppStyles.buildHeader(title: 'Esqueci Minha Senha'), // Cabeçalho reutilizável
+      appBar: AppStyles.buildHeader(title: 'Esqueci Minha Senha'), 
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             controller.loading
                 ? CircularProgressIndicator()
-                : SizedBox(height: 35), // Espaçamento de 35px da parte do login
+                : SizedBox(height: 35), 
 
-            // Adicionando o retângulo abaixo do login
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 35), // 35px de distância das bordas laterais
-              padding: EdgeInsets.symmetric(vertical: 25), // Espaço superior e inferior do container
-              width: double.infinity, // Largura dinâmica
+              margin: EdgeInsets.symmetric(horizontal: 35), 
+              padding: EdgeInsets.symmetric(vertical: 25), 
+              width: double.infinity, 
               decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1), // Cor branca
+                color: Color.fromRGBO(255, 255, 255, 1), 
                 border: Border.all(
-                  color: Color.fromRGBO(217, 217, 217, 1), // Borda de 1px na cor cinza
+                  color: Color.fromRGBO(217, 217, 217, 1), 
                   width: 1,
                 ),
-                borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+                borderRadius: BorderRadius.circular(8), 
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
+                crossAxisAlignment: CrossAxisAlignment.start, 
                 children: [
-                  // Texto "Email"
                   Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), // Ajuste de 5px da parte superior
+                    padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), 
                     child: Text('Email'),
                   ),
-                  // Caixa de texto para Email
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color.fromRGBO(217, 217, 217, 1), // Cor da borda do campo de texto
+                            color: Color.fromRGBO(217, 217, 217, 1), 
                           ),
                         ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10), // Espaçamento interno
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10), 
                       ),
                     ),
                   ),
-                  // Texto "Confirmar Email"
                   Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10), // 25px de espaçamento da borda
+                    padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10), 
                     child: Text('Confirmar Email'),
                   ),
-                  // Caixa de texto para Confirmar Email
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color.fromRGBO(217, 217, 217, 1), // Cor da borda do campo de texto
+                            color: Color.fromRGBO(217, 217, 217, 1), 
                           ),
                         ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10), // Espaçamento interno
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10), 
                       ),
                     ),
                   ),
-                  // Botão "Confirmar"
-                  SizedBox(height: 35), // Ajuste do espaçamento para 40px entre senha e botão
+                  SizedBox(height: 35), 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), // 25px de distância da borda
+                    padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: ElevatedButton(
                       onPressed: () {
-                        // Redirecionar para a tela app_homepage.dart ao pressionar o botão "Confirmar"
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => MyApp()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor do botão
-                        padding: EdgeInsets.symmetric(vertical: 15), // Tamanho do botão
+                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
+                        padding: EdgeInsets.symmetric(vertical: 15), 
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+                          borderRadius: BorderRadius.circular(8), 
                         ),
                       ),
                       child: Center(
                         child: Text(
                           'Confirmar',
                           style: TextStyle(
-                            color: Colors.white, // Cor do texto do botão
-                            fontSize: 18, // Tamanho da fonte
+                            color: Colors.white, 
+                            fontSize: 18, 
                           ),
                         ),
                       ),
                     ),
                   ),
-                  // Textos Selecionáveis
-                  SizedBox(height: 30), // Espaçamento de 15px abaixo do botão
+                  SizedBox(height: 30), 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), // Mesma distância da borda que o botão
+                    padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start, // Alinhado à esquerda
+                      crossAxisAlignment: CrossAxisAlignment.start, 
                       children: [
-                        // Texto "Suporte" com pop-up
                         HoverText(
                           text: 'Suporte',
                           onTap: () {
@@ -147,13 +138,13 @@ class HomeScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        SizedBox(height: 2), // Espaçamento de 2px entre os textos
+                        SizedBox(height: 2), 
                         HoverText(
                           text: 'Voltar',
                           onTap: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (context) => MyApp()), // Redireciona para a tela principal
+                              MaterialPageRoute(builder: (context) => MyApp()), 
                             );
                           },
                         ),
@@ -170,7 +161,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// Classe reutilizável para adicionar o efeito de hover nos textos
 class HoverText extends StatefulWidget {
   final String text;
   final VoidCallback onTap;
@@ -182,7 +172,7 @@ class HoverText extends StatefulWidget {
 }
 
 class _HoverTextState extends State<HoverText> {
-  bool _isHovering = false; // Estado para verificar se o mouse está sobre o texto
+  bool _isHovering = false; 
 
   @override
   Widget build(BuildContext context) {
@@ -202,9 +192,9 @@ class _HoverTextState extends State<HoverText> {
         child: Text(
           widget.text,
           style: TextStyle(
-            color: _isHovering ? Colors.blue : Colors.black, // Muda a cor ao passar o mouse
+            color: _isHovering ? Colors.blue : Colors.black, 
             fontSize: 14,
-            decoration: TextDecoration.underline, // Sublinhado
+            decoration: TextDecoration.underline, 
           ),
         ),
       ),

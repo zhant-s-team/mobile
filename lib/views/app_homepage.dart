@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../styles/app_styles.dart'; // Importando o estilo
-import 'app_perfil_user.dart'; // Importa a nova tela de perfil de usuário
+import '../styles/app_styles.dart'; 
+import 'app_perfil_user.dart'; 
 import 'app_suporte.dart';
 
 class AppHomePage extends StatefulWidget {
@@ -10,26 +10,25 @@ class AppHomePage extends StatefulWidget {
 }
 
 class _AppHomePageState extends State<AppHomePage> {
-  bool _isOverlayVisible = false; // Variável para controlar a visibilidade da tela sobreposta
-  bool _isAccepted = false; // Variável para controlar o ícone de aceitação
-  bool _isHovering = false; // Variável para controlar o efeito de hover
-  bool _isHeadphonesHovering = false; // Variável para controlar o hover dos headphones
+  bool _isOverlayVisible = false; 
+  bool _isAccepted = false; 
+  bool _isHovering = false; 
+  bool _isHeadphonesHovering = false; 
 
   @override
   void initState() {
     super.initState();
-    _loadAcceptanceStatus(); // Carregar o estado de aceitação ao iniciar
+    _loadAcceptanceStatus(); 
   }
 
-  // Método para carregar o status de aceitação salvo
+
   Future<void> _loadAcceptanceStatus() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _isAccepted = prefs.getBool('isAccepted') ?? false; // Carrega o valor salvo
+      _isAccepted = prefs.getBool('isAccepted') ?? false; 
     });
   }
 
-  // Método para salvar o status de aceitação
   Future<void> _saveAcceptanceStatus(bool status) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isAccepted', status);
@@ -38,7 +37,7 @@ class _AppHomePageState extends State<AppHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor, // Cor de fundo RGB(255, 255, 255, 1)
+      backgroundColor: AppStyles.backgroundColor, 
       body: 
       Stack(
         children: [
@@ -69,7 +68,7 @@ class _AppHomePageState extends State<AppHomePage> {
                 'Marcelo',
                 style: TextStyle(
                   fontSize: 20,
-                  color: _isHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                  color: _isHovering ? Colors.blue : Colors.black, 
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -102,7 +101,7 @@ class _AppHomePageState extends State<AppHomePage> {
                 child: Icon(
                   Icons.headphones,
                   size: 48.0,
-                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, 
                 ),
               ),
             ),
@@ -371,7 +370,7 @@ class _AppHomePageState extends State<AppHomePage> {
                       ),
                     ),
                     Positioned(
-                      bottom: 50.0, // 50px acima da parte de baixo da tela
+                      bottom: 50.0,
                       left: 0,
                       right: 0,
                       child: Center(
@@ -381,8 +380,8 @@ class _AppHomePageState extends State<AppHomePage> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               setState(() {
-                                _isAccepted = true; // Define o estado de aceitação
-                                _saveAcceptanceStatus(_isAccepted); // Salva o estado
+                                _isAccepted = true; 
+                                _saveAcceptanceStatus(_isAccepted); 
                               });
                             },
                             icon: _isAccepted
@@ -391,7 +390,7 @@ class _AppHomePageState extends State<AppHomePage> {
                                     color: Colors.green,
                                     size: 20.0,
                                   )
-                                : SizedBox.shrink(), // Ícone condicional
+                                : SizedBox.shrink(), 
                             label: Text(
                               'Aceitar Frete',
                               style: TextStyle(

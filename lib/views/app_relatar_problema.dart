@@ -8,10 +8,8 @@ class AppRelatarProblem extends StatefulWidget {
 }
 
 class _AppRelatarProblemState extends State<AppRelatarProblem> {
-  bool _isHovering = false; // Variável para controlar o efeito de hover
-  bool _isHeadphonesHovering = false; // Variável para controlar o hover dos headphones
+  bool _isHovering = false; 
 
-  // Controladores para capturar o texto inserido pelo usuário
   final TextEditingController campo1Controller = TextEditingController();
   final TextEditingController campo2Controller = TextEditingController();
   final TextEditingController campo3Controller = TextEditingController();
@@ -19,10 +17,9 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor, // Cor de fundo RGB(255, 255, 255, 1)
+      backgroundColor: AppStyles.backgroundColor, 
       body: Stack(
         children: [
-          // Botão de "Voltar" com efeito de hover
           Positioned(
             top: 20.0,
             left: 15.0,
@@ -50,7 +47,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                   '<- Voltar',
                   style: TextStyle(
                     fontSize: 20,
-                    color: _isHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                    color: _isHovering ? Colors.blue : Colors.black, 
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -58,7 +55,6 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
             ),
           ),
 
-          // Ícone de fones de ouvido
           Positioned(
             top: 10.0,
             right: 10.0,
@@ -85,13 +81,12 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                 child: Icon(
                   Icons.headphones,
                   size: 48.0,
-                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, // Altera a cor ao passar o mouse
+                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, 
                 ),
               ),
             ),
           ),
 
-          // Linha divisória superior
           Positioned(
             top: 80.0,
             left: 20.0,
@@ -102,7 +97,6 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
             ),
           ),
 
-          // Título centralizado "Relatar Problema"
           Positioned(
             top: 105.0,
             left: 0,
@@ -119,7 +113,6 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
             ),
           ),
 
-          // Linha divisória abaixo do título
           Positioned(
             top: 160.0,
             left: 20.0,
@@ -130,13 +123,11 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
             ),
           ),
 
-          // Campos de digitação centralizados
           Positioned.fill(
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Campo de digitação 1
                   Container(
                     width: 300,
                     height: 40,
@@ -148,13 +139,12 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8), // Borda levemente arredondada
-                          borderSide: BorderSide(color: Colors.grey), // Borda cinza
+                          borderRadius: BorderRadius.circular(8), 
+                          borderSide: BorderSide(color: Colors.grey), 
                         ),
                       ),
                     ),
                   ),
-                  // Campo de digitação 2
                   Container(
                     width: 300,
                     height: 40,
@@ -166,13 +156,12 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8), // Borda levemente arredondada
-                          borderSide: BorderSide(color: Colors.grey), // Borda cinza
+                          borderRadius: BorderRadius.circular(8), 
+                          borderSide: BorderSide(color: Colors.grey),
                         ),
                       ),
                     ),
                   ),
-                  // Campo de digitação 3
                   Container(
                     width: 300,
                     height: 40,
@@ -183,8 +172,8 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8), // Borda levemente arredondada
-                          borderSide: BorderSide(color: Colors.grey), // Borda cinza
+                          borderRadius: BorderRadius.circular(8), 
+                          borderSide: BorderSide(color: Colors.grey), 
                         ),
                       ),
                     ),
@@ -194,7 +183,6 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
             ),
           ),
 
-          // Botão "Confirmar Envio" centralizado e a 50px do final da tela
           Positioned(
             bottom: 50.0,
             left: 0,
@@ -205,11 +193,10 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Ação do botão
                     print("Envio confirmado");
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(44, 44, 44, 1), // Cor de fundo do botão
+                    backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
