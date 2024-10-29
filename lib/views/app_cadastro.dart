@@ -20,7 +20,7 @@ class CadastroScreen extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(8), 
             ),
-            padding: const EdgeInsets.all(5.0), 
+            padding: const EdgeInsets.all(20.0), 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -71,120 +71,7 @@ class CadastroScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 25),
-
-                
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Text('CPF'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite seu CPF',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 25),
-
-                
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Text('Telefone'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite seu telefone',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 25),
-
-                
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Text('Data Nascimento'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite sua data de nascimento',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 25),
-
-                
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Text('CEP'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite seu CEP',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 25),
-
-                
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Text('Estado'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite seu estado',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 25),
-
-                
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Text('Bairro'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite seu bairro',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 25),
-
-                
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
-                  child: Text('Rua'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite sua rua',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 25),
-
+                SizedBox(height: 50),
                 
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25), 
@@ -215,7 +102,7 @@ class CadastroScreen extends StatelessWidget {
                     ),
                   ),
 
-                SizedBox(height: 10), 
+                SizedBox(height: 20), 
 
                 
                 Padding(

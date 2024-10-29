@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                   
                   Padding(
                     padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), 
-                    child: Text('Email'),
+                    child: Text('Senha Atual'),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25), 
@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                   
                   Padding(
                     padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10), 
-                    child: Text('Confirmar Email'),
+                    child: Text('Nova Senha'),
                   ),
                   
                   Padding(
