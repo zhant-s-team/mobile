@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestao/main.dart';
-import '../styles/app_styles.dart'; 
+import '../styles/app_styles.dart';
 
 class CadastroScreen extends StatelessWidget {
   @override
@@ -9,18 +8,18 @@ class CadastroScreen extends StatelessWidget {
       backgroundColor: AppStyles.backgroundColor,
       appBar: AppStyles.buildHeader(title: 'Cadastro'), 
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0), 
-        child: SingleChildScrollView( 
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+        child: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 255, 255, 1), 
+              color: Color.fromRGBO(255, 255, 255, 1),
               border: Border.all(
-                color: Color.fromRGBO(217, 217, 217, 1), 
-                width: 1, 
+                color: Color.fromRGBO(217, 217, 217, 1),
+                width: 1,
               ),
-              borderRadius: BorderRadius.circular(8), 
+              borderRadius: BorderRadius.circular(8),
             ),
-            padding: const EdgeInsets.all(20.0), 
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -71,36 +70,33 @@ class CadastroScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 SizedBox(height: 50),
-                
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
-                    child: ElevatedButton(
-                      onPressed: () {
-                        
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyApp()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
-                        padding: EdgeInsets.symmetric(vertical: 15), 
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), 
-                        ),
+                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Retorna uma mensagem para a tela de login ao finalizar o cadastro
+                      Navigator.pop(context, "Cadastro realizado com sucesso");
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(44, 44, 44, 1),
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Center(
-                        child: Text(
-                          'Cadastrar',
-                          style: TextStyle(
-                            color: Colors.white, 
-                            fontSize: 18, 
-                          ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Cadastrar',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
                         ),
                       ),
                     ),
                   ),
+                ),
 
                 SizedBox(height: 20), 
 

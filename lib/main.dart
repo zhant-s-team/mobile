@@ -35,25 +35,19 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            controller.loading
-                ? CircularProgressIndicator()
-                : SizedBox(height: 35),
+            controller.loading ? CircularProgressIndicator() : SizedBox(height: 35),
 
-            
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 35), 
-              padding: EdgeInsets.symmetric(vertical: 25), 
-              width: double.infinity, 
+              margin: EdgeInsets.symmetric(horizontal: 35),
+              padding: EdgeInsets.symmetric(vertical: 25),
+              width: double.infinity,
               decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1), 
-                border: Border.all(
-                  color: Color.fromRGBO(217, 217, 217, 1), 
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(8), 
+                color: Color.fromRGBO(255, 255, 255, 1),
+                border: Border.all(color: Color.fromRGBO(217, 217, 217, 1), width: 1),
+                borderRadius: BorderRadius.circular(8),
               ),
-                child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, 
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), 
@@ -89,9 +83,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 35), 
+                  SizedBox(height: 35),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
+                    padding: EdgeInsets.symmetric(horizontal: 25),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacement(
@@ -100,19 +94,16 @@ class HomeScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
-                        padding: EdgeInsets.symmetric(vertical: 15), 
+                        backgroundColor: Color.fromRGBO(44, 44, 44, 1),
+                        padding: EdgeInsets.symmetric(vertical: 15),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), 
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       child: Center(
                         child: Text(
                           'Entrar',
-                          style: TextStyle(
-                            color: Colors.white, 
-                            fontSize: 18, 
-                          ),
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
                     ),
@@ -141,13 +132,26 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: 2), 
+                        Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         HoverText(
                           text: 'Cadastre-se',
-                          onTap: () {
-                            Navigator.push(
+                          onTap: () async {
+                            final result = await Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => CadastroScreen()),
                             );
+                            if (result != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(result),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
                           },
                         ),
                         SizedBox(height: 2), 
@@ -181,6 +185,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+          ]
+      ),
       ),
     );
   }
