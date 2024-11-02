@@ -115,25 +115,25 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start, 
                       children: [
                         HoverText(
-                          text: 'Esqueci minha senha',
-                          onTap: () {
-                            Navigator.push(
+                          text: 'Esqueci a senha',
+                          onTap: () async {
+                            final result = await Navigator.push(
                               context,
-                              PageRouteBuilder(
-                                pageBuilder: (context, animation, secondaryAnimation) => ForgotPasswordScreen(),
-                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  return FadeTransition(
-                                    opacity: animation,
-                                    child: child,
-                                  );
-                                },
-                              ),
+                              MaterialPageRoute(builder: (context) => ForgotPasswordScreen()),
                             );
+                            if (result != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(result),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
                           },
                         ),
                         SizedBox(height: 2), 
                         Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

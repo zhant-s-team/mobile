@@ -77,7 +77,7 @@ class CadastroScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // Retorna uma mensagem para a tela de login ao finalizar o cadastro
-                      Navigator.pop(context, "Cadastro realizado com sucesso");
+                      Navigator.pop(context, "Cadastro realizado com sucesso!");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(44, 44, 44, 1),
