@@ -30,18 +30,18 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             controller.loading
-                ? CircularProgressIndicator()
-                : SizedBox(height: 35), 
+                ? const CircularProgressIndicator()
+                : const SizedBox(height: 35), 
 
             
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 35), 
-              padding: EdgeInsets.symmetric(vertical: 25), 
+              margin: const EdgeInsets.symmetric(horizontal: 35), 
+              padding: const EdgeInsets.symmetric(vertical: 25), 
               width: double.infinity, 
               decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1), 
+                color: const Color.fromRGBO(255, 255, 255, 1), 
                 border: Border.all(
-                  color: Color.fromRGBO(217, 217, 217, 1), 
+                  color: const Color.fromRGBO(217, 217, 217, 1), 
                   width: 1,
                 ),
                 borderRadius: BorderRadius.circular(8), 
@@ -50,11 +50,11 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start, 
                 children: [
                   
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), 
                     child: Text('Senha Atual'),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: TextField(
                       decoration: InputDecoration(
@@ -68,12 +68,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10), 
                     child: Text('Nova Senha'),
                   ),
                   
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: TextField(
                       decoration: InputDecoration(
@@ -87,26 +87,26 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   
-                  SizedBox(height: 35), 
+                  const SizedBox(height: 35), 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
+                    padding: const EdgeInsets.symmetric(horizontal: 25), 
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AppPerfilUser(showPasswordChangedPopup: true),
+                            builder: (context) => const AppPerfilUser(showPasswordChangedPopup: true),
                           ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
-                        padding: EdgeInsets.symmetric(vertical: 15), 
+                        backgroundColor: const Color.fromRGBO(44, 44, 44, 1), 
+                        padding: const EdgeInsets.symmetric(vertical: 15), 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8), 
                         ),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Confirmar',
                           style: TextStyle(
@@ -118,21 +118,21 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   
-                  SizedBox(height: 30), 
+                  const SizedBox(height: 30), 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
+                    padding: const EdgeInsets.symmetric(horizontal: 25), 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start, 
                       children: [
                         
                         
-                        SizedBox(height: 2), 
+                        const SizedBox(height: 2), 
                         HoverText(
                           text: 'Voltar',
                           onTap: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (context) => AppPerfilUser()), 
+                              MaterialPageRoute(builder: (context) => const AppPerfilUser()), 
                             );
                           },
                         ),

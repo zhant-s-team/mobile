@@ -60,7 +60,7 @@ class _AppHomePageState extends State<AppHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AppPerfilUser(),
+                        builder: (context) => const AppPerfilUser(),
                       ),
                     );
                   },
@@ -94,7 +94,7 @@ class _AppHomePageState extends State<AppHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppSuport(),
+                      builder: (context) => const AppSuport(),
                     ),
                   );
                 },
@@ -112,10 +112,10 @@ class _AppHomePageState extends State<AppHomePage> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 105.0,
             left: 0,
             right: 0,
@@ -136,7 +136,7 @@ class _AppHomePageState extends State<AppHomePage> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
           Positioned(
@@ -151,7 +151,7 @@ class _AppHomePageState extends State<AppHomePage> {
                   width: (MediaQuery.of(context).size.width - 26) / 3,
                   height: 40.0,
                   decoration: BoxDecoration(
-                    color: Color(0xFFFF965B),
+                    color: const Color(0xFFFF965B),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 );
@@ -166,12 +166,12 @@ class _AppHomePageState extends State<AppHomePage> {
             child: Container(
               height: 240.0,
               decoration: BoxDecoration(
-                color: Color(0xFFD9D9D9),
+                color: const Color(0xFFD9D9D9),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Stack(
                 children: [
-                  Positioned(
+                  const Positioned(
                     top: 5.0,
                     left: 10.0,
                     child: Text(
@@ -198,7 +198,7 @@ class _AppHomePageState extends State<AppHomePage> {
                       ),
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     top: 134.0,
                     left: 10.0,
                     child: Column(
@@ -251,13 +251,13 @@ class _AppHomePageState extends State<AppHomePage> {
                           });
                         },
                         icon: _isAccepted
-                            ? Icon(
+                            ? const Icon(
                                 Icons.check,
                                 color: Colors.green,
                                 size: 20.0,
                               )
-                            : SizedBox.shrink(),
-                        label: Text(
+                            : const SizedBox.shrink(),
+                        label: const Text(
                           'Ver Mais',
                           style: TextStyle(
                             color: Colors.white,
@@ -265,7 +265,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(44, 44, 44, 1),
+                          backgroundColor: const Color.fromRGBO(44, 44, 44, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),
@@ -280,14 +280,14 @@ class _AppHomePageState extends State<AppHomePage> {
           if (_isOverlayVisible)
             Positioned.fill(
               child: Container(
-                color: Color.fromRGBO(185, 185, 185, 0.894),
+                color: const Color.fromRGBO(185, 185, 185, 0.894),
                 child: Stack(
                   children: [
                     Positioned(
                       top: 20.0,
                       right: 20.0,
                       child: IconButton(
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                         color: Colors.black,
                         iconSize: 30.0,
                         onPressed: () {
@@ -297,7 +297,7 @@ class _AppHomePageState extends State<AppHomePage> {
                         },
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       top: 60.0,
                       left: 30.0,
                       child: Column(
@@ -385,13 +385,13 @@ class _AppHomePageState extends State<AppHomePage> {
                               });
                             },
                             icon: _isAccepted
-                                ? Icon(
+                                ? const Icon(
                                     Icons.check,
                                     color: Colors.green,
                                     size: 20.0,
                                   )
-                                : SizedBox.shrink(), 
-                            label: Text(
+                                : const SizedBox.shrink(), 
+                            label: const Text(
                               'Aceitar Frete',
                               style: TextStyle(
                                 color: Colors.white,
@@ -399,7 +399,7 @@ class _AppHomePageState extends State<AppHomePage> {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(44, 44, 44, 1),
+                              backgroundColor: const Color.fromRGBO(44, 44, 44, 1),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),

@@ -35,25 +35,25 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            controller.loading ? CircularProgressIndicator() : SizedBox(height: 35),
+            controller.loading ? const CircularProgressIndicator() : const SizedBox(height: 35),
 
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 35),
-              padding: EdgeInsets.symmetric(vertical: 25),
+              margin: const EdgeInsets.symmetric(horizontal: 35),
+              padding: const EdgeInsets.symmetric(vertical: 25),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1),
-                border: Border.all(color: Color.fromRGBO(217, 217, 217, 1), width: 1),
+                color: const Color.fromRGBO(255, 255, 255, 1),
+                border: Border.all(color: const Color.fromRGBO(217, 217, 217, 1), width: 1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), 
                     child: Text('Email'),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: TextField(
                       decoration: InputDecoration(
@@ -66,11 +66,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10), 
                     child: Text('Senha'),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25), 
                     child: TextField(
                       decoration: InputDecoration(
@@ -79,13 +79,13 @@ class HomeScreen extends StatelessWidget {
                             color: Color.fromRGBO(217, 217, 217, 1), 
                           ),
                         ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10), 
+                         contentPadding: EdgeInsets.symmetric(horizontal: 10), 
                       ),
                     ),
                   ),
-                  SizedBox(height: 35),
+                  const SizedBox(height: 35),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacement(
@@ -95,12 +95,12 @@ class HomeScreen extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(44, 44, 44, 1),
-                        padding: EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Entrar',
                           style: TextStyle(color: Colors.white, fontSize: 18),
@@ -108,9 +108,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30), 
+                  const SizedBox(height: 30), 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
+                    padding: const EdgeInsets.symmetric(horizontal: 25), 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start, 
                       children: [
@@ -131,9 +131,9 @@ class HomeScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        SizedBox(height: 2), 
+                        const SizedBox(height: 2), 
                         Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 0),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -154,7 +154,7 @@ class HomeScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        SizedBox(height: 2), 
+                        const SizedBox(height: 2), 
                         HoverText(
                           text: 'Suporte',
                           onTap: () {
@@ -162,11 +162,11 @@ class HomeScreen extends StatelessWidget {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text("Relatar problema"),
-                                  content: Text("Email: viacargo@email.com"),
+                                  title: const Text("Relatar problema"),
+                                  content: const Text("Email: viacargo@email.com"),
                                   actions: [
                                     TextButton(
-                                      child: Text("Fechar"),
+                                      child: const Text("Fechar"),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },

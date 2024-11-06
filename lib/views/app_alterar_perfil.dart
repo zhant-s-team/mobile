@@ -42,7 +42,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppPerfilUser(),
+                      builder: (context) => const AppPerfilUser(),
                     ),
                   );
                 },
@@ -77,7 +77,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppSuport(),
+                      builder: (context) => const AppSuport(),
                     ),
                   );
                 },
@@ -96,11 +96,11 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
 
-          Positioned(
+          const Positioned(
             top: 105.0,
             left: 0,
             right: 0,
@@ -122,7 +122,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
 
@@ -132,10 +132,10 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0), 
+                    padding: EdgeInsets.only(bottom: 5.0, left: 0.0), 
                     child: Text(
                       'Email',
                       style: TextStyle(
@@ -145,7 +145,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 300, 
                   height: 40, 
                   child: TextField(
@@ -157,17 +157,17 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8), 
-                        borderSide: BorderSide(color: Colors.grey), 
+                        borderSide: const BorderSide(color: Colors.grey), 
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 20), 
+                const SizedBox(height: 20), 
                 
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 5.0, left: 0.0), 
+                    padding: EdgeInsets.only(bottom: 5.0, left: 0.0), 
                     child: Text(
                       'WhatsApp',
                       style: TextStyle(
@@ -177,7 +177,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 300, 
                   height: 40, 
                   child: TextField(
@@ -189,7 +189,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8), 
-                        borderSide: BorderSide(color: Colors.grey), 
+                        borderSide: const BorderSide(color: Colors.grey), 
                       ),
                     ),
                   ),

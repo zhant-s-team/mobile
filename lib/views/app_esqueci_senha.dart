@@ -13,9 +13,9 @@ class ForgotPasswordScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: const Color.fromRGBO(255, 255, 255, 1),
               border: Border.all(
-                color: Color.fromRGBO(217, 217, 217, 1),
+                color: const Color.fromRGBO(217, 217, 217, 1),
                 width: 1,
               ),
               borderRadius: BorderRadius.circular(8),
@@ -25,12 +25,12 @@ class ForgotPasswordScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Email'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                const Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -38,15 +38,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Confirmar Email'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextField(
                     obscureText: true,
                     decoration: InputDecoration(
@@ -56,22 +56,22 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: ElevatedButton(
                     onPressed: () {
                       // Retorna uma mensagem para a tela de login ao finalizar o cadastro
                       Navigator.pop(context, "Senha alterada com sucesso!");
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(44, 44, 44, 1),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      backgroundColor: const Color.fromRGBO(44, 44, 44, 1),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Confirmar',
                         style: TextStyle(
@@ -83,9 +83,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 30), 
+                const SizedBox(height: 30), 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
+                    padding: const EdgeInsets.symmetric(horizontal: 25), 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start, 
                       children: [
@@ -96,14 +96,14 @@ class ForgotPasswordScreen extends StatelessWidget {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text("Relatar problema"),
-                                  content: Text("Email: viacargo@email.com"),
+                                  title: const Text("Relatar problema"),
+                                  content: const Text("Email: viacargo@email.com"),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text("Fechar"),
+                                      child: const Text("Fechar"),
                                     ),
                                   ],
                                 );
@@ -111,7 +111,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        SizedBox(height: 2), 
+                        const SizedBox(height: 2), 
                         HoverText(
                           text: 'Voltar',
                           onTap: () {

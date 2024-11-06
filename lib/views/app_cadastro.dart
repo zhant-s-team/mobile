@@ -12,9 +12,9 @@ class CadastroScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: const Color.fromRGBO(255, 255, 255, 1),
               border: Border.all(
-                color: Color.fromRGBO(217, 217, 217, 1),
+                color: const Color.fromRGBO(217, 217, 217, 1),
                 width: 1,
               ),
               borderRadius: BorderRadius.circular(8),
@@ -24,12 +24,12 @@ class CadastroScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0), 
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 10.0, left: 20.0), 
                   child: Text('Nome'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0), 
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0), 
                   child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -37,15 +37,15 @@ class CadastroScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 25), 
+                const SizedBox(height: 25), 
 
                 
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
+                const Padding(
+                  padding:  EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Email'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -53,15 +53,15 @@ class CadastroScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
 
                 
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Senha'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextField(
                     obscureText: true,
                     decoration: InputDecoration(
@@ -71,22 +71,22 @@ class CadastroScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: ElevatedButton(
                     onPressed: () {
                       // Retorna uma mensagem para a tela de login ao finalizar o cadastro
                       Navigator.pop(context, "Cadastro realizado com sucesso!");
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(44, 44, 44, 1),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      backgroundColor: const Color.fromRGBO(44, 44, 44, 1),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Cadastrar',
                         style: TextStyle(
@@ -98,11 +98,11 @@ class CadastroScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 20), 
+                const SizedBox(height: 20), 
 
                 
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
+                    padding: const EdgeInsets.symmetric(horizontal: 25), 
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacement(
@@ -111,13 +111,13 @@ class CadastroScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
-                        padding: EdgeInsets.symmetric(vertical: 15), 
+                        backgroundColor: const Color.fromRGBO(44, 44, 44, 1), 
+                        padding: const EdgeInsets.symmetric(vertical: 15), 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8), 
                         ),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Limpar',
                           style: TextStyle(
