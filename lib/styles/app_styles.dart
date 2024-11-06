@@ -6,14 +6,14 @@ class AppStyles {
 
   static PreferredSizeWidget buildHeader({required String title}) {
     return PreferredSize(
-      preferredSize: Size.fromHeight(122), 
+      preferredSize: const Size.fromHeight(122), 
       child: Container(
         width: 360, 
         color: headerBackgroundColor,
         child: Center( 
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24, 
               fontWeight: FontWeight.bold,
               color: Colors.black, 

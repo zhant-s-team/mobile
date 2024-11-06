@@ -28,14 +28,14 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Aviso"),
-              content: Text("Senha Alterada!"),
+              title: const Text("Aviso"),
+              content: const Text("Senha Alterada!"),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("OK"),
+                  child: const Text("OK"),
                 ),
               ],
             );
@@ -105,7 +105,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppSuport(),
+                      builder: (context) => const AppSuport(),
                     ),
                   );
                 },
@@ -124,11 +124,11 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
 
-          Positioned(
+          const Positioned(
             top: 105.0,
             left: 0,
             right: 0,
@@ -150,7 +150,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
 
@@ -161,7 +161,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                 Container(
                   width: 300.0,
                   height: 40.0,
-                  margin: EdgeInsets.only(bottom: 10.0), 
+                  margin: const EdgeInsets.only(bottom: 10.0), 
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8.0),
@@ -176,7 +176,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       "Alterar Senha",
                       style: TextStyle(color: Colors.black),
                     ),
@@ -200,7 +200,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       "Alterar Perfil",
                       style: TextStyle(color: Colors.black),
                     ),

@@ -40,7 +40,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppSuport(),
+                      builder: (context) => const AppSuport(),
                     ),
                   );
                 },
@@ -75,7 +75,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppSuport(),
+                      builder: (context) => const AppSuport(),
                     ),
                   );
                 },
@@ -94,11 +94,11 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
 
-          Positioned(
+          const Positioned(
             top: 105.0,
             left: 0,
             right: 0,
@@ -120,7 +120,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
             right: 20.0,
             child: Container(
               height: 1.0,
-              color: Color(0xFFD9D9D9),
+              color: const Color(0xFFD9D9D9),
             ),
           ),
 
@@ -132,7 +132,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                   Container(
                     width: 300,
                     height: 40,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     child: TextField(
                       controller: campo1Controller,
                       decoration: InputDecoration(
@@ -141,7 +141,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8), 
-                          borderSide: BorderSide(color: Colors.grey), 
+                          borderSide: const BorderSide(color: Colors.grey), 
                         ),
                       ),
                     ),
@@ -149,7 +149,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                   Container(
                     width: 300,
                     height: 40,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     child: TextField(
                       controller: campo2Controller,
                       decoration: InputDecoration(
@@ -158,12 +158,12 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8), 
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: const BorderSide(color: Colors.grey),
                         ),
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 300,
                     height: 40,
                     child: TextField(
@@ -174,7 +174,7 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8), 
-                          borderSide: BorderSide(color: Colors.grey), 
+                          borderSide: const BorderSide(color: Colors.grey), 
                         ),
                       ),
                     ),
@@ -197,12 +197,12 @@ class _AppRelatarProblemState extends State<AppRelatarProblem> {
                     print("Envio confirmado");
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(44, 44, 44, 1), 
+                    backgroundColor: const Color.fromRGBO(44, 44, 44, 1), 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Confirmar Envio",
                     style: TextStyle(
                       color: Colors.white,
