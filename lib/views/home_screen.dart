@@ -1,11 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:gestao/controllers/app_controller.dart';
 import 'package:gestao/styles/app_styles.dart';
+import 'package:gestao/views/app_alterar_senha.dart';
 import 'package:gestao/views/app_cadastro.dart';
 import 'package:gestao/views/app_esqueci_senha.dart';
 import 'package:gestao/views/app_homepage.dart';
+import 'package:gestao/widgets/custom_button_widget.dart'; 
 import 'package:provider/provider.dart';
+
+import '../widgets/custom_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,15 +16,19 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<DataController>(context);
+    final emailController = TextEditingController(); // Controlador para o campo de email
+    final senhaController = TextEditingController(); // Controlador para o campo de senha
 
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
-      appBar: AppStyles.buildHeader(title: 'Login'), 
+      appBar: AppStyles.buildHeader(title: 'Login'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            controller.loading ? const CircularProgressIndicator() : const SizedBox(height: 35),
+            controller.loading
+                ? const CircularProgressIndicator()
+                : const SizedBox(height: 35),
 
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 35),
@@ -36,69 +43,52 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10), 
+                    padding: EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 10),
                     child: Text('Email'),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromRGBO(217, 217, 217, 1), 
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10), 
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: CustomTextField(
+                      controller: emailController, // Usando o controlador de email
+                      hintText: 'Email',
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10), 
+                    padding: EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10),
                     child: Text('Senha'),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25), 
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromRGBO(217, 217, 217, 1), 
-                          ),
-                        ),
-                         contentPadding: EdgeInsets.symmetric(horizontal: 10), 
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: CustomTextField(
+                      controller: senhaController, // Usando o controlador de senha
+                      hintText: 'Senha',
+                      obscureText: true,  // Para ocultar a senha
                     ),
                   ),
                   const SizedBox(height: 35),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: ElevatedButton(
+                    child: CustomButton(
+                      text: 'Entrar',
                       onPressed: () {
+                        // Aqui você pode pegar os valores dos campos para autenticação
+                        final email = emailController.text;
+                        final senha = senhaController.text;
+                        print('O coletado é Email: $email, Senha: $senha');
+
+                        // Aqui você pode adicionar a lógica de login com esses dados
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => const AppHomePage()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(44, 44, 44, 1),
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'Entrar',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
                     ),
                   ),
-                  const SizedBox(height: 30), 
+                  const SizedBox(height: 30),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25), 
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start, 
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         HoverText(
                           text: 'Esqueci a senha',
@@ -117,51 +107,54 @@ class HomeScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        const SizedBox(height: 2), 
+                        const SizedBox(height: 2),
                         Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HoverText(
-                          text: 'Cadastre-se',
-                          onTap: () async {
-                            final result = await Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const CadastroScreen()),
-                            );
-                            if (result != null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(result),
-                                  backgroundColor: Colors.green,
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 2), 
-                        HoverText(
-                          text: 'Suporte',
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text("Relatar problema"),
-                                  content: const Text("Email: viacargo@email.com"),
-                                  actions: [
-                                    TextButton(
-                                      child: const Text("Fechar"),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
+                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HoverText(
+                                text: 'Cadastre-se',
+                                onTap: () async {
+                                  final result = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const CadastroScreen()),
+                                  );
+                                  if (result != null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(result),
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 2),
+                              HoverText(
+                                text: 'Suporte',
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text("Relatar problema"),
+                                        content: const Text("Email: viacargo@email.com"),
+                                        actions: [
+                                          TextButton(
+                                            child: const Text("Fechar"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -170,50 +163,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-          ]
-      ),
-      ),
-    );
-  }
-}
-
-class HoverText extends StatefulWidget {
-  final String text;
-  final VoidCallback onTap;
-
-  const HoverText({super.key, required this.text, required this.onTap});
-
-  @override
-  _HoverTextState createState() => _HoverTextState();
-}
-
-class _HoverTextState extends State<HoverText> {
-  bool _isHovering = false; 
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) {
-        setState(() {
-          _isHovering = true;
-        });
-      },
-      onExit: (_) {
-        setState(() {
-          _isHovering = false;
-        });
-      },
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: Text(
-          widget.text,
-          style: TextStyle(
-            color: _isHovering ? Colors.blue : Colors.black, 
-            fontSize: 14,
-            decoration: TextDecoration.underline, 
-          ),
         ),
       ),
     );

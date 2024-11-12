@@ -26,8 +26,8 @@ class LoginPage extends StatelessWidget {
       return 'Por favor, insira sua senha';
     }
     // Validação simples de senha (mínimo de 6 caracteres)
-    if (value.length < 6) {
-      return 'A senha deve ter pelo menos 6 caracteres';
+    if (value.length < 8) {
+      return 'A senha deve ter pelo menos 8 caracteres';
     }
     return null;
   }
@@ -45,11 +45,6 @@ class LoginPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/img/logo.png', // Ajuste o caminho da imagem aqui
-                width: 100,
-              ),
-              const SizedBox(height: 20),
               TextFieldWidget(
                 controller: emailController,
                 icon: Icons.email,
