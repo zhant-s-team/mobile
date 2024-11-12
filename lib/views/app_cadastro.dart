@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:gestao/widgets/custom_button_widget.dart';  // Importação do custom button
 import '../styles/app_styles.dart';
+import '../widgets/custom_text_field.dart';
 
 class CadastroScreen extends StatelessWidget {
   const CadastroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Criando os controladores para os campos de entrada
+    final nomeController = TextEditingController();
+    final emailController = TextEditingController();
+    final senhaController = TextEditingController();
+    final cnhController = TextEditingController(); // Adicionando controlador para CNH
+
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
       appBar: AppStyles.buildHeader(title: 'Cadastro'), 
@@ -25,111 +33,84 @@ class CadastroScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
                 const Padding(
                   padding: EdgeInsets.only(bottom: 10.0, left: 20.0), 
                   child: Text('Nome'),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0), 
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite seu nome',
-                    ),
-                  ),
+                CustomTextField(
+                  hintText: 'Digite seu nome',
+                  controller: nomeController,
                 ),
                 const SizedBox(height: 25), 
 
-                
                 const Padding(
-                  padding:  EdgeInsets.only(bottom: 10.0, left: 20.0),
+                  padding: EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Email'),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite seu email',
-                    ),
-                  ),
+                CustomTextField(
+                  hintText: 'Digite seu email',
+                  controller: emailController,
                 ),
                 const SizedBox(height: 25),
 
-                
                 const Padding(
                   padding: EdgeInsets.only(bottom: 10.0, left: 20.0),
                   child: Text('Senha'),
                 ),
+                CustomTextField(
+                  hintText: 'Digite sua senha',
+                  controller: senhaController,
+                  obscureText: true, // Definindo que a senha será oculta
+                ),
+
+                const SizedBox(height: 25),
+
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite sua senha',
-                    ),
-                  ),
+                  padding: EdgeInsets.only(bottom: 10.0, left: 20.0),
+                  child: Text('CNH'),
+                ),
+                CustomTextField(
+                  hintText: 'Digite sua CNH',
+                  controller: cnhController,
                 ),
 
                 const SizedBox(height: 50),
+                
+                // Substituindo o ElevatedButton pelo CustomButtonWidget
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: ElevatedButton(
+                  child: CustomButton(
+                    text: 'Cadastrar',
                     onPressed: () {
-                      // Retorna uma mensagem para a tela de login ao finalizar o cadastro
+                      final nome = nomeController.text;
+                      final email = emailController.text;
+                      final senha = senhaController.text;
+                      final cnh = cnhController.text; // Pegando o valor da CNH
+
+                      // Aqui você pode adicionar a lógica para enviar os dados para o backend
+                      print('Nome: $nome Email: $email Senha: $senha CNH: $cnh');
+                      
                       Navigator.pop(context, "Cadastro realizado com sucesso!");
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(44, 44, 44, 1),
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Cadastrar',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
                   ),
                 ),
 
                 const SizedBox(height: 20), 
 
-                
+                // Substituindo o ElevatedButton pelo CustomButtonWidget
                 Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25), 
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => const CadastroScreen()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(44, 44, 44, 1), 
-                        padding: const EdgeInsets.symmetric(vertical: 15), 
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), 
-                        ),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'Limpar',
-                          style: TextStyle(
-                            color: Colors.white, 
-                            fontSize: 18, 
-                          ),
-                        ),
-                      ),
-                    ),
+                  padding: const EdgeInsets.symmetric(horizontal: 25), 
+                  child: CustomButton(
+                    text: 'Limpar',
+                    onPressed: () {
+                      // Limpar os campos
+                      nomeController.clear();
+                      emailController.clear();
+                      senhaController.clear();
+                      cnhController.clear(); // Limpando o campo de CNH
+                    },
                   ),
+                ),
               ],
             ),
           ),
