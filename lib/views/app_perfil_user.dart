@@ -70,7 +70,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AppHomePage(),
+                      builder: (context) => const AppHomePage(),
                     ),
                   );
                 },
@@ -172,7 +172,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PasswordScreen(),
+                          builder: (context) => const PasswordScreen(),
                         ),
                       );
                     },
@@ -196,7 +196,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AppChangePerfil(), 
+                          builder: (context) => const AppChangePerfil(), 
                         ),
                       );
                     },

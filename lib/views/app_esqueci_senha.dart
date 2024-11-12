@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gestao/main.dart';
 import '../styles/app_styles.dart';
+import 'home_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
+  const ForgotPasswordScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,7 +120,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (context) => MyApp()), 
+                              MaterialPageRoute(builder: (context) => const MyApp()), 
                             );
                           },
                         ),

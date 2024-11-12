@@ -3,6 +3,8 @@ import '../styles/app_styles.dart';
 import 'app_suporte.dart';
 
 class AppRelatarProblem extends StatefulWidget {
+  const AppRelatarProblem({super.key});
+
   @override
   _AppRelatarProblemState createState() => _AppRelatarProblemState();
 }

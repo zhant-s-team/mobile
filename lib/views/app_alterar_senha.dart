@@ -6,11 +6,13 @@ import '../styles/app_styles.dart';
 import 'app_perfil_user.dart'; 
 
 class PasswordScreen extends StatelessWidget {
+  const PasswordScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => DataController(ApiService()),
-      child: MaterialApp(
+      child: const MaterialApp(
         home: HomeScreen(),
       ),
     );
@@ -18,6 +20,8 @@ class PasswordScreen extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<DataController>(context);
@@ -153,7 +157,7 @@ class HoverText extends StatefulWidget {
   final String text;
   final VoidCallback onTap;
 
-  const HoverText({required this.text, required this.onTap});
+  const HoverText({super.key, required this.text, required this.onTap});
 
   @override
   _HoverTextState createState() => _HoverTextState();

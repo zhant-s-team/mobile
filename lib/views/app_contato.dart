@@ -3,6 +3,8 @@ import '../styles/app_styles.dart';
 import 'app_suporte.dart';
 
 class Appcontact extends StatefulWidget {
+  const Appcontact({super.key});
+
   @override
   _AppcontactState createState() => _AppcontactState();
 }
