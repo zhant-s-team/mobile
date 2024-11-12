@@ -4,6 +4,8 @@ import 'app_perfil_user.dart';
 import 'app_suporte.dart';
 
 class AppChangePerfil extends StatefulWidget {
+  const AppChangePerfil({super.key});
+
   @override
   _AppChangePerfilState createState() => _AppChangePerfilState();
 }

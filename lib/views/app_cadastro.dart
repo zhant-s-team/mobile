@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../styles/app_styles.dart';
 
 class CadastroScreen extends StatelessWidget {
+  const CadastroScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +109,7 @@ class CadastroScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => CadastroScreen()),
+                          MaterialPageRoute(builder: (context) => const CadastroScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

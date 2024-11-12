@@ -5,6 +5,8 @@ import 'app_perfil_user.dart';
 import 'app_suporte.dart';
 
 class AppHomePage extends StatefulWidget {
+  const AppHomePage({super.key});
+
   @override
   _AppHomePageState createState() => _AppHomePageState();
 }
@@ -175,7 +177,7 @@ class _AppHomePageState extends State<AppHomePage> {
                     top: 5.0,
                     left: 10.0,
                     child: Text(
-                      '#723   Levar madeira até em Tupi',
+                      '#723   Levar madeira até em Tupi',//Na api: titulo, o numero é o id da entrega
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -205,7 +207,7 @@ class _AppHomePageState extends State<AppHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Empresa: Local Fretes',
+                          'Empresa: Local Fretes',//empresa que postou, pegaria o user_id, pega o nome
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -213,7 +215,7 @@ class _AppHomePageState extends State<AppHomePage> {
                         ),
                         SizedBox(height: 5.0),
                         Text(
-                          'Cidade: Piracicaba',
+                          'Cidade de origem: Piracicaba',//na api: cidade_origem
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -221,7 +223,7 @@ class _AppHomePageState extends State<AppHomePage> {
                         ),
                         SizedBox(height: 5.0),
                         Text(
-                          'Destino: Tupi Paulista',
+                          'Cidade destino: Tupi Paulista',//na api: cidade_destino
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -229,7 +231,7 @@ class _AppHomePageState extends State<AppHomePage> {
                         ),
                         SizedBox(height: 5.0),
                         Text(
-                          'Porte do veículo: Médio',
+                          'Tipo do veículo: Bi-trem',//na api: tipo_veiculo
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -312,7 +314,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           ),
                           SizedBox(height: 10.0),
                           Text(
-                            'Cidade: Piracicaba',
+                            'Cidade de origem: Piracicaba',
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
@@ -320,7 +322,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           ),
                           SizedBox(height: 10.0),
                           Text(
-                            'Destino: Tupi Paulista',
+                            'Cidade destino: Tupi Paulista',
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
@@ -328,7 +330,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           ),
                           SizedBox(height: 10.0),
                           Text(
-                            'Estado: Médio',
+                            'Descrição: lorem' ,
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
@@ -336,7 +338,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           ),
                           SizedBox(height: 10.0),
                           Text(
-                            'Porte do Veículo: Médio',
+                            'Tipo do Veículo: Bitrem',
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
@@ -344,7 +346,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           ),
                           SizedBox(height: 10.0),
                           Text(
-                            'Tipo de Carga: Médio',
+                            'Carga: Médio',
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
@@ -352,7 +354,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           ),
                           SizedBox(height: 10.0),
                           Text(
-                            'Distância de Trajeto: 354 Km',
+                            'Distância de Trajeto: 354 Km',//na API: percurso 
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black,
