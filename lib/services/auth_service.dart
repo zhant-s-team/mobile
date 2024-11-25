@@ -3,33 +3,46 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthService {
-  final String baseUrl = 'http://127.0.0.1:8000';  // URL da sua API
+  final String baseUrl = 'http://127.0.0.1:8000/api';
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   // Realiza o login
-  Future<Map<String, dynamic>> login(String email, String password) async {
-    try {
-      final response = await http.post(
-        Uri.parse('$baseUrl/login'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'email': email, 'password': password}),
-      );
+// Realiza o login
+Future<Map<String, dynamic>> login(String email, String password) async {
+  try {
+    final response = await http.post(
+      Uri.parse('$baseUrl/login'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'email': email, 'password': password}),
+    );
 
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      
+      // Verificar se o servidor retornou a informação sobre CNH
+      if (data['user'] != null && data['user']['cnh'] == null) {
+        return {'success': false, 'message': 'Usuario não é motorista'};
+      }
+
+      if (data['token'] != null) {
         // Armazenando o token
         await _secureStorage.write(key: 'token', value: data['token']);
         return {'success': true, 'message': 'Login realizado com sucesso', 'data': data};
       } else {
-        return {'success': false, 'message': 'Credenciais inválidas'};
+        return {'success': false, 'message': 'Token não recebido'};
       }
-    } catch (e) {
-      return {'success': false, 'message': 'Erro ao tentar se conectar'};
+    } else {
+      final data = jsonDecode(response.body);
+      return {'success': false, 'message': data['message'] ?? 'Credenciais inválidas'};
     }
+  } catch (e) {
+    return {'success': false, 'message': 'Erro ao tentar se conectar: $e'};
   }
+}
+
 
   // Realiza o registro
-  Future<Map<String, dynamic>> register(String name, String email, String password, String passwordConfirmation) async {
+  Future<Map<String, dynamic>> register(String name, String email, String password, String passwordConfirmation, String cnh) async {
     try {
       final response = await http.post(
         Uri.parse('$baseUrl/register'),
@@ -39,38 +52,51 @@ class AuthService {
           'email': email,
           'password': password,
           'password_confirmation': passwordConfirmation,
+          'cnh': cnh,
         }),
       );
 
       if (response.statusCode == 201) {
         final data = jsonDecode(response.body);
-        // Armazenando o token
-        await _secureStorage.write(key: 'token', value: data['token']);
-        return {'success': true, 'message': 'Registro realizado com sucesso', 'data': data};
+        if (data['token'] != null) {
+          // Armazenando o token
+          await _secureStorage.write(key: 'token', value: data['token']);
+          return {'success': true, 'message': 'Registro realizado com sucesso', 'data': data};
+        } else {
+          return {'success': false, 'message': 'Token não recebido após o registro'};
+        }
       } else {
-        return {'success': false, 'message': 'Erro ao registrar'};
+        return {'success': false, 'message': 'Erro ao registrar: ${response.body}'};
       }
     } catch (e) {
-      return {'success': false, 'message': 'Erro ao tentar se conectar'};
+      return {'success': false, 'message': 'Erro ao tentar se conectar: $e'};
     }
   }
 
   // Realiza o logout
-  Future<void> logout() async {
+  Future<Map<String, dynamic>> logout() async {
     try {
       final token = await _secureStorage.read(key: 'token');
       if (token != null) {
-        await http.post(
+        final response = await http.post(
           Uri.parse('$baseUrl/logout'),
           headers: {
             'Authorization': 'Bearer $token',
           },
         );
-        // Remove o token após o logout
-        await _secureStorage.delete(key: 'token');
+
+        if (response.statusCode == 200) {
+          // Remove o token após o logout
+          await _secureStorage.delete(key: 'token');
+          return {'success': true, 'message': 'Logout realizado com sucesso'};
+        } else {
+          return {'success': false, 'message': 'Erro ao realizar logout: ${response.body}'};
+        }
+      } else {
+        return {'success': false, 'message': 'Nenhum token encontrado'};
       }
     } catch (e) {
-      // Tratar o erro aqui, se necessário
+      return {'success': false, 'message': 'Erro ao tentar se conectar: $e'};
     }
   }
 
