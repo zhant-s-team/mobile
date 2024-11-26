@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gestao/models/app_model.dart';
+import 'package:gestao/controllers/auth_controller.dart';
 import 'package:provider/provider.dart';
-import '../controllers/app_controller.dart';
-import '../styles/app_styles.dart';
+import '../../styles/app_styles.dart';
 import 'app_perfil_user.dart'; 
 
 class PasswordScreen extends StatelessWidget {
@@ -11,7 +10,7 @@ class PasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => DataController(ApiService()),
+      create: (context) => AuthController(),
       child: const MaterialApp(
         home: HomeScreen(),
       ),
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<DataController>(context);
+    final controller = Provider.of<AuthController>(context);
 
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
@@ -33,11 +32,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            controller.loading
-                ? const CircularProgressIndicator()
-                : const SizedBox(height: 35), 
-
-            
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 35), 
               padding: const EdgeInsets.symmetric(vertical: 25), 

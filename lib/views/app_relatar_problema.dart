@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../styles/app_styles.dart';
-import 'app_suporte.dart';
+import 'suporte/app_suporte.dart';
 
 class AppRelatarProblem extends StatefulWidget {
   const AppRelatarProblem({super.key});

@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import '../models/app_model.dart';
+import 'package:gestao/services/api_service.dart';
 
-class DataController with ChangeNotifier {
+import '../models/empresa_model.dart';
+import '../models/entrega_model.dart';
+
+class EntregaController with ChangeNotifier {
   final ApiService apiService;
-  DataModel? _data;
+  List<EntregaModel>? _entregas;
   bool _loading = false;
 
-  DataController(this.apiService);
+  EntregaController(this.apiService);
 
-  DataModel? get data => _data;
+  List<EntregaModel>? get entregas => _entregas;
   bool get loading => _loading;
 
-  Future<void> fetchData() async {
+  Future<void> fetchEntregas() async {
     _loading = true;
     notifyListeners();
 
     try {
-      _data = await apiService.fetchData();
+      _entregas = (await apiService.fetchEntregas()) as List<EntregaModel>?;
     } catch (e) {
       print(e);
     } finally {

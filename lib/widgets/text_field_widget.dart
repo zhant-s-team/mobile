@@ -63,9 +63,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         onTap: widget.onTap,
         keyboardType: widget.textInputType,
         maxLines: widget.maxLines,
-        style: const TextStyle(color: Colors.white), // Texto digitado em branco
+        style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)), // Texto digitado em branco
         decoration: InputDecoration(
-          prefixIcon: Icon(widget.icon, color: Colors.white),
+          prefixIcon: Icon(widget.icon, color: const Color.fromARGB(255, 5, 4, 4)),
           suffixIcon: widget.isSecret
               ? IconButton(
                   onPressed: () {
@@ -79,7 +79,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 )
               : null,
           labelText: widget.label,
-          labelStyle: const TextStyle(color: Colors.white),
+          labelStyle: const TextStyle(color: Color.fromARGB(255, 3, 3, 3)),
           isDense: true,
           border: widget.border
               ? OutlineInputBorder(borderRadius: BorderRadius.circular(18.0))

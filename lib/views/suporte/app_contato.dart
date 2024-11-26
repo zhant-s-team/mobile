@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import '../styles/app_styles.dart';
-import 'app_perfil_user.dart'; 
+import '../../styles/app_styles.dart';
 import 'app_suporte.dart';
 
-class AppChangePerfil extends StatefulWidget {
-  const AppChangePerfil({super.key});
+class Appcontact extends StatefulWidget {
+  const Appcontact({super.key});
 
   @override
-  _AppChangePerfilState createState() => _AppChangePerfilState();
+  _AppcontactState createState() => _AppcontactState();
 }
 
-class _AppChangePerfilState extends State<AppChangePerfil> {
+class _AppcontactState extends State<Appcontact> {
   bool _isHovering = false; 
   bool _isHeadphonesHovering = false; 
 
@@ -44,7 +43,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const AppPerfilUser(),
+                      builder: (context) => const AppSuport(),
                     ),
                   );
                 },
@@ -108,7 +107,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
             right: 0,
             child: Center(
               child: Text(
-                'Solicitação de alteração de perfil',
+                'Contato',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -147,6 +146,7 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                     ),
                   ),
                 ),
+                
                 SizedBox(
                   width: 300, 
                   height: 40, 
@@ -165,11 +165,10 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
                   ),
                 ),
                 const SizedBox(height: 20), 
-                
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 5.0, left: 0.0), 
+                    padding:  EdgeInsets.only(bottom: 5.0, left: 0.0),
                     child: Text(
                       'WhatsApp',
                       style: TextStyle(

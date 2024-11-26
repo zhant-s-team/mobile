@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../styles/app_styles.dart'; // Importando o estilo
-import 'app_relatar_problema.dart'; // Importando o arquivo de Alterar Senha
+import '../../styles/app_styles.dart'; // Importando o estilo
+import '../app_relatar_problema.dart'; // Importando o arquivo de Alterar Senha
 import 'app_contato.dart'; // Importando a página de Contato
-import 'app_homepage.dart';
+import '../menu_page.dart';
 
 class AppSuport extends StatefulWidget {
   final bool showPasswordChangedPopup;
@@ -68,7 +68,7 @@ class _AppSuportState extends State<AppSuport> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const AppHomePage(),
+                      builder: (context) => const MenuPage(),
                     ),
                   );
                 },
