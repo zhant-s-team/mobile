@@ -5,8 +5,14 @@ class AuthController with ChangeNotifier {
   final AuthService _authService = AuthService();
 
   Future<void> login(String email, String password) async {
-    await _authService.login(email, password);
-    notifyListeners();
+    final result = await _authService.login(email, password);
+
+    if (result['success']) {
+      // Login bem-sucedido
+      notifyListeners();
+    } else {
+      throw Exception(result['message']);
+    }
   }
 
   Future<void> logout() async {
@@ -14,3 +20,4 @@ class AuthController with ChangeNotifier {
     notifyListeners();
   }
 }
+

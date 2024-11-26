@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gestao/views/perfil/app_perfil_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../styles/app_styles.dart'; 
-import 'app_perfil_user.dart'; 
-import 'app_suporte.dart';
 
-class AppHomePage extends StatefulWidget {
-  const AppHomePage({super.key});
+import '../../styles/app_styles.dart';
+import '../suporte/app_suporte.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  _AppHomePageState createState() => _AppHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _AppHomePageState extends State<AppHomePage> {
+class _HomePageState extends State<HomePage> {
   bool _isOverlayVisible = false; 
   bool _isAccepted = false; 
   bool _isHovering = false; 
@@ -414,6 +415,7 @@ class _AppHomePageState extends State<AppHomePage> {
                 ),
               ),
             ),
+            
         ],
       ),
     );

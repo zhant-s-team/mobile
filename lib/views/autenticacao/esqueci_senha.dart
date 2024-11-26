@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gestao/main.dart';
 import 'package:gestao/widgets/custom_button_widget.dart';  // Importe o widget customizado
-import '../styles/app_styles.dart';
-import '../widgets/custom_text_field.dart';
-import 'app_alterar_senha.dart'; // Importe o CustomTextField
+import '../../styles/app_styles.dart';
+import '../../widgets/custom_text_field.dart';
+import '../perfil/app_alterar_senha.dart'; // Importe o CustomTextField
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -102,7 +102,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => const MyApp()),
+                            MaterialPageRoute(builder: (context) => const MyApp(isLoggedIn: true,)),
                           );
                         },
                       ),

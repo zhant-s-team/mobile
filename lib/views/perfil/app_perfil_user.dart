@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../styles/app_styles.dart'; // Importando o estilo
-import 'app_homepage.dart';
+import '../../styles/app_styles.dart'; // Importando o estilo
+import '../menu_page.dart';
 import 'app_alterar_senha.dart'; // Importando o arquivo de Alterar Senha
 import 'app_alterar_perfil.dart'; // Importando a página de Alterar Perfil
-import 'app_suporte.dart';
+import '../suporte/app_suporte.dart';
 
 class AppPerfilUser extends StatefulWidget {
   final bool showPasswordChangedPopup;
@@ -70,7 +70,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const AppHomePage(),
+                      builder: (context) => const MenuPage(),
                     ),
                   );
                 },
