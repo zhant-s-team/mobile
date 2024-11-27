@@ -22,44 +22,12 @@ class _AppChangePerfilState extends State<AppChangePerfil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Alterar perfil.'),
       backgroundColor: AppStyles.backgroundColor, 
+      ),
       body: Stack(
         children: [
-          Positioned(
-            top: 20.0,
-            left: 15.0,
-            child: MouseRegion(
-              onEnter: (_) {
-                setState(() {
-                  _isHovering = true;
-                });
-              },
-              onExit: (_) {
-                setState(() {
-                  _isHovering = false;
-                });
-              },
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AppPerfilUser(),
-                    ),
-                  );
-                },
-                child: Text(
-                  '<- Voltar',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: _isHovering ? Colors.blue : Colors.black, 
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-
           Positioned(
             top: 10.0,
             right: 10.0,

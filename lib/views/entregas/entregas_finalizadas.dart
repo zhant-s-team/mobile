@@ -3,14 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/entrega_model.dart';
 import '../../services/api_service.dart';
 
-class EntregasPage extends StatefulWidget {
-  const EntregasPage({super.key});
+class EntregasFinalizadas extends StatefulWidget {
+  const EntregasFinalizadas({super.key});
 
   @override
-  _EntregasPageState createState() => _EntregasPageState();
+  _EntregasFinalizadasState createState() => _EntregasFinalizadasState();
 }
 
-class _EntregasPageState extends State<EntregasPage> {
+class _EntregasFinalizadasState extends State<EntregasFinalizadas> {
   late Future<List<EntregaModel>> entregas;
   int? userId;
 
@@ -59,7 +59,7 @@ class _EntregasPageState extends State<EntregasPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Entregas'),
+        title: const Text('Entregas Concluídas'),
       ),
       body: FutureBuilder<List<EntregaModel>>(
         future: entregas,
@@ -69,13 +69,13 @@ class _EntregasPageState extends State<EntregasPage> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Erro: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            // Filtra as entregas onde 'accept_by' é igual ao 'userId'
+            // Filtra as entregas onde 'status' é 'D' (concluídas) e 'accept_by' é igual ao 'userId'
             final entregasFiltradas = snapshot.data!
-                .where((entrega) => entrega.status == 'A' && entrega.acceptBy == userId)
+                .where((entrega) => entrega.status == 'C' && entrega.acceptBy == userId)
                 .toList();
 
             if (entregasFiltradas.isEmpty) {
-              return const Center(child: Text('Nenhuma entrega encontrada.'));
+              return const Center(child: Text('Nenhuma entrega concluída encontrada.'));
             }
 
             return ListView.builder(
@@ -104,7 +104,7 @@ class _EntregasPageState extends State<EntregasPage> {
                             'Usuário: ${entrega.user.name}\n'
                             'Carga: ${entrega.carga}\n'
                             'Veículo: ${entrega.tipoVeiculo}\n'
-                            'Descrição: ${entrega.descricao}\n' // Adiciona a descrição
+                            'Descrição: ${entrega.descricao}\n' // Exibe a descrição
                             'Status: ${entrega.status}',
                           ),
                           actions: [
@@ -113,13 +113,6 @@ class _EntregasPageState extends State<EntregasPage> {
                                 Navigator.pop(context); // Fecha o diálogo
                               },
                               child: const Text('Fechar'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context); // Fecha o diálogo
-                                _concluirEntrega(entrega.id); // Conclui a entrega
-                              },
-                              child: const Text('Concluir'),
                             ),
                           ],
                         ),
@@ -130,7 +123,7 @@ class _EntregasPageState extends State<EntregasPage> {
               },
             );
           } else {
-            return const Center(child: Text('Nenhuma entrega encontrada.'));
+            return const Center(child: Text('Nenhuma entrega concluída encontrada.'));
           }
         },
       ),

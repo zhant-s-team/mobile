@@ -30,13 +30,11 @@ class MyApp extends StatelessWidget {
 */
 
 import 'package:flutter/material.dart';
-import 'package:gestao/views/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'controllers/app_controller.dart';
 import 'controllers/auth_controller.dart';
 import 'services/api_service.dart';
-import 'services/auth_service.dart';
 import 'views/menu_page.dart';
 import 'views/autenticacao/login_page.dart'; // Importando as rotas centralizadas
 

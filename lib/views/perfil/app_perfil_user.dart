@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gestao/views/autenticacao/login_page.dart';
+import 'package:gestao/views/entregas/entregas_finalizadas.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth_service.dart';
 import '../../styles/app_styles.dart'; // Importando o estilo
-import '../menu_page.dart';
-import 'app_alterar_senha.dart'; // Importando o arquivo de Alterar Senha
 import 'app_alterar_perfil.dart'; // Importando a página de Alterar Perfil
-import '../suporte/app_suporte.dart';
 
 class AppPerfilUser extends StatefulWidget {
   final bool showPasswordChangedPopup;
@@ -63,39 +61,7 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
-      appBar: AppBar(
-        actions: [
-          MouseRegion(
-            onEnter: (_) {
-              setState(() {
-                _isHeadphonesHovering = true;
-              });
-            },
-            onExit: (_) {
-              setState(() {
-                _isHeadphonesHovering = false;
-              });
-            },
-            child: IconButton(
-              icon: Icon(
-                Icons.headphones,
-                color: _isHeadphonesHovering ? Colors.blue : Colors.black,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AppSuport(),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-        title: const Text('Configurar usuário'),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -138,12 +104,12 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const PasswordScreen(),
+                        builder: (context) => const EntregasFinalizadas(),
                       ),
                     );
                   },
                   child: const Text(
-                    "Alterar Senha",
+                    "Ver entregas concluidas",
                     style: TextStyle(color: Colors.black),
                   ),
                 ),

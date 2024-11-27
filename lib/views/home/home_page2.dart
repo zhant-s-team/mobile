@@ -12,7 +12,6 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePageState2 extends State<HomePage2> {
-  bool _isOverlayVisible = false;
   bool _isAccepted = false;
   late Future<List<EntregaModel>> entregas;
 
@@ -28,7 +27,7 @@ class _HomePageState2 extends State<HomePage2> {
     final prefs = await SharedPreferences.getInstance();
     final nome = prefs.getString('user_name') ?? 'Usuário';
     final email = prefs.getString('user_email') ?? 'Email não disponível';
-    final id = prefs.getInt('user_id') ?? null;
+    final id = prefs.getInt('user_id');
     // Agora você pode usar as variáveis 'nome' e 'email' em sua interface
     print('Nome: $nome, Email: $email, Id: $id');
   }
@@ -100,7 +99,7 @@ class _HomePageState2 extends State<HomePage2> {
             },
           ),
             TextButton(
-              child: Text('Fechar'),
+              child: const Text('Fechar'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -136,7 +135,7 @@ class _HomePageState2 extends State<HomePage2> {
                         entregas.where((entrega) => entrega.status == 'D').toList();
 
                     if (entregasFiltradas.isEmpty) {
-                      return const Center(child: Text('Nenhuma entrega com status "D" encontrada.'));
+                      return const Center(child: Text('Nenhuma entrega disponivel.'));
                     }
 
                     return ListView.builder(

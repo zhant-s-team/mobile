@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../styles/app_styles.dart'; // Importando o estilo
-import '../app_relatar_problema.dart'; // Importando o arquivo de Alterar Senha
-import 'app_contato.dart'; // Importando a página de Contato
 import '../menu_page.dart';
 
 class AppSuport extends StatefulWidget {
@@ -14,8 +12,8 @@ class AppSuport extends StatefulWidget {
 }
 
 class _AppSuportState extends State<AppSuport> {
-  bool _isHovering = false; 
-  
+  bool _isHovering = false;
+
   @override
   void initState() {
     super.initState();
@@ -46,44 +44,9 @@ class _AppSuportState extends State<AppSuport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor, 
+      backgroundColor: AppStyles.backgroundColor,
       body: Stack(
         children: [
-          Positioned(
-            top: 20.0,
-            left: 15.0,
-            child: MouseRegion(
-              onEnter: (_) {
-                setState(() {
-                  _isHovering = true;
-                });
-              },
-              onExit: (_) {
-                setState(() {
-                  _isHovering = false;
-                });
-              },
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MenuPage(),
-                    ),
-                  );
-                },
-                child: Text(
-                  '<- Voltar',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: _isHovering ? Colors.blue : Colors.black, 
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-
           const Positioned(
             top: 10.0,
             right: 10.0,
@@ -130,55 +93,71 @@ class _AppSuportState extends State<AppSuport> {
             ),
           ),
 
-          Center(
+          // Aqui começa o conteúdo da página de Contato
+          Positioned(
+            top: 280.0,
+            left: MediaQuery.of(context).size.width * 0.5 - 150,
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 300.0,
-                  height: 40.0,
-                  margin: const EdgeInsets.only(bottom: 10.0), 
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AppRelatarProblem(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Relatar problema",
-                      style: TextStyle(color: Colors.black),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 5.0, left: 0.0),
+                    child: Text(
+                      'Email',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
-
-                Container(
-                  width: 300.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: Colors.grey),
+                SizedBox(
+                  width: 300,
+                  height: 40,
+                  child: TextField(
+                    controller: TextEditingController(text: "viacargo@email.com"),
+                    readOnly: true,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
+                    ),
                   ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Appcontact(), 
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Contato",
-                      style: TextStyle(color: Colors.black),
+                ),
+                const SizedBox(height: 20),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 5.0, left: 0.0),
+                    child: Text(
+                      'WhatsApp',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 300,
+                  height: 40,
+                  child: TextField(
+                    controller: TextEditingController(text: "99 8877-6655"),
+                    readOnly: true,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
                     ),
                   ),
                 ),

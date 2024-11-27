@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gestao/styles/app_styles.dart';
-import 'package:gestao/views/perfil/app_alterar_senha.dart';
 import 'package:gestao/views/autenticacao/cadastro.dart';
-import 'package:gestao/views/autenticacao/esqueci_senha.dart';
 import 'package:gestao/views/menu_page.dart';
 import 'package:gestao/widgets/custom_button_widget.dart'; 
 import 'package:provider/provider.dart';
 import '../../controllers/auth_controller.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/hover_text_widget.dart';
 
 class LoginPage extends StatefulWidget {  // Nome da classe alterado para LoginPage
   const LoginPage({super.key});
@@ -129,23 +128,6 @@ class _LoginPageState extends State<LoginPage> {  // Alterado para _LoginPageSta
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        HoverText(
-                          text: 'Esqueci a senha',
-                          onTap: () async {
-                            final result = await Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
-                            );
-                            if (result != null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(result),
-                                  backgroundColor: Colors.green,
-                                ),
-                              );
-                            }
-                          },
-                        ),
                         const SizedBox(height: 2),
                         HoverText(
                           text: 'Cadastre-se',
