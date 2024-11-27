@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestao/views/autenticacao/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth_service.dart';
 import '../../styles/app_styles.dart'; // Importando o estilo
 import '../menu_page.dart';
@@ -19,10 +20,13 @@ class AppPerfilUser extends StatefulWidget {
 class _AppPerfilUserState extends State<AppPerfilUser> {
   bool _isHovering = false;
   bool _isHeadphonesHovering = false;
-  
+  String _nome = 'Usuário';
+  String _email = 'Email não disponível';
+
   @override
   void initState() {
     super.initState();
+    _loadUserData();
 
     if (widget.showPasswordChangedPopup) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -45,6 +49,14 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
         );
       });
     }
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _nome = prefs.getString('user_name') ?? 'Usuário';
+      _email = prefs.getString('user_email') ?? 'Email não disponível';
+    });
   }
 
   @override
@@ -91,7 +103,27 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Divider(color: Color(0xFFD9D9D9), thickness: 1.0),
-              
+
+              // Exibição do Nome e Email
+              Text(
+                _nome,
+                style: const TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 4.0),
+              Text(
+                _email,
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 20.0),
+
+              // Botões
               Container(
                 width: double.infinity,
                 height: 40.0,
@@ -116,7 +148,6 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                   ),
                 ),
               ),
-
               Container(
                 width: double.infinity,
                 height: 40.0,
@@ -141,7 +172,6 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
                   ),
                 ),
               ),
-
               Container(
                 width: double.infinity,
                 height: 40.0,

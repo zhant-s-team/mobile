@@ -85,6 +85,7 @@ class EntregaModel {
     String status;
     Empresa empresa;
     User user;
+    int? acceptBy;  // Campo adicionado como int? para permitir null
 
     EntregaModel({
         required this.id,
@@ -102,8 +103,10 @@ class EntregaModel {
         required this.status,
         required this.empresa,
         required this.user,
+        this.acceptBy,  // Campo opcional (pode ser nulo)
     });
 
+    // Atualizando o fromJson para incluir acceptBy
     factory EntregaModel.fromJson(Map<String, dynamic> json) => EntregaModel(
         id: json["id"],
         createdAt: DateTime.parse(json["created_at"]),
@@ -120,8 +123,10 @@ class EntregaModel {
         status: json["status"],
         empresa: Empresa.fromJson(json["empresa"]),
         user: User.fromJson(json["user"]),
+        acceptBy: json["accept_by"] != null ? json["accept_by"] : null,  // Verifica se acceptBy está presente
     );
 
+    // Atualizando o toJson para incluir acceptBy
     Map<String, dynamic> toJson() => {
         "id": id,
         "created_at": createdAt.toIso8601String(),
@@ -138,6 +143,7 @@ class EntregaModel {
         "status": status,
         "empresa": empresa.toJson(),
         "user": user.toJson(),
+        "accept_by": acceptBy,  // Inclui acceptBy no JSON
     };
 }
 

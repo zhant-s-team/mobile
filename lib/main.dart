@@ -67,7 +67,6 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => const LoginPage(),// usuario de teste: 10@gmail.com          senha: 12345678
           '/home': (context) => const MenuPage(),
-          '/splash': (context) => const SplashPage(),
         },
       ),
     );

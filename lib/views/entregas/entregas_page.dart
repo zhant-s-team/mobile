@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/entrega_model.dart';
 import '../../services/api_service.dart';
@@ -12,15 +13,34 @@ class EntregasPage extends StatefulWidget {
 
 class _EntregasPageState extends State<EntregasPage> {
   late Future<List<EntregaModel>> entregas;
+  int? userId;
 
   @override
   void initState() {
     super.initState();
-    entregas = ApiService().fetchEntregas();  // Chama o ApiService para obter as entregas
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final id = prefs.getInt('user_id');
+    setState(() {
+      userId = id;
+      // Chama o ApiService para obter as entregas apenas para o userId carregado
+      if (userId != null) {
+        entregas = ApiService().fetchEntregas(); // Busca todas as entregas
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (userId == null) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Entregas'),
@@ -33,11 +53,19 @@ class _EntregasPageState extends State<EntregasPage> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Erro: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            final entregas = snapshot.data!;
+            // Filtra as entregas onde 'accept_by' é igual ao 'userId'
+            final entregasFiltradas = snapshot.data!
+                .where((entrega) => entrega.status == 'A' && entrega.acceptBy == userId)
+                .toList();
+
+            if (entregasFiltradas.isEmpty) {
+              return const Center(child: Text('Nenhuma entrega encontrada.'));
+            }
+
             return ListView.builder(
-              itemCount: entregas.length,
+              itemCount: entregasFiltradas.length,
               itemBuilder: (context, index) {
-                final entrega = entregas[index];
+                final entrega = entregasFiltradas[index];
                 return Card(
                   margin: const EdgeInsets.all(8.0),
                   child: ListTile(

@@ -28,6 +28,13 @@ class ApiService {
       throw Exception('Erro ao carregar entregas: ${response.statusCode}');
     }
   }
+    Future<List<EntregaModel>> fetchEntregasFiltradas(int userId) async {
+    // Obtenha as entregas da API ou do backend
+    final entregas = await fetchEntregas();
+
+    // Filtre as entregas pelo status e pelo usuário
+    return entregas.where((entrega) => entrega.status == 'A' && entrega.acceptBy == userId).toList();
+  }
 
   // Função para aceitar uma entrega
   Future<void> aceitarEntrega(int entregaId) async {
