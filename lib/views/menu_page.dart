@@ -69,7 +69,7 @@ class _MenuPageState extends State<MenuPage> {
       backgroundColor: AppStyles.backgroundColor,
       appBar: AppBar(
         title: Text('Olá, $_userName'), // Exibe o nome do usuário na AppBar
-        backgroundColor: Colors.amber, // Escolha a cor da AppBar
+        backgroundColor: AppStyles.headerBackgroundColor, // Escolha a cor da AppBar
       ),
       body: _pages[_selectedIndex], // Exibe a página selecionada
       bottomNavigationBar: BottomNavigationBar(

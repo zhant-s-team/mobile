@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../models/entrega_model.dart'; // Importe o modelo EntregaModel
+import '../../models/entrega_model.dart';
+import '../../services/api_service.dart'; // Importe o modelo EntregaModel
 
 class HomePage2 extends StatefulWidget {
   const HomePage2({super.key});
@@ -24,14 +24,15 @@ class _HomePageState2 extends State<HomePage2> {
     _loadUserData();
   }
 
-Future<void> _loadUserData() async {
-  final prefs = await SharedPreferences.getInstance();
-  final nome = prefs.getString('user_name') ?? 'Usuário';
-  final email = prefs.getString('user_email') ?? 'Email não disponível';
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final nome = prefs.getString('user_name') ?? 'Usuário';
+    final email = prefs.getString('user_email') ?? 'Email não disponível';
+    final id = prefs.getInt('user_id') ?? null;
+    // Agora você pode usar as variáveis 'nome' e 'email' em sua interface
+    print('Nome: $nome, Email: $email, Id: $id');
+  }
 
-  // Agora você pode usar as variáveis 'nome' e 'email' em sua interface
-  print('Nome: $nome, Email: $email');
-}
   Future<void> _loadAcceptanceStatus() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -57,6 +58,59 @@ Future<void> _loadUserData() async {
     }
   }
 
+  void _showEntregaDetails(EntregaModel entrega) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Detalhes da Entrega #${entrega.id}'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Text('Título: ${entrega.titulo}'),
+                Text('Descrição: ${entrega.descricao}'),
+                Text('Cidade de Origem: ${entrega.cidadeOrigem}'),
+                Text('Cidade de Destino: ${entrega.cidadeDestino}'),
+                Text('Tipo de Veículo: ${entrega.tipoVeiculo}'),
+                Text('Carga: ${entrega.carga}'),
+                Text('Percurso: ${entrega.percurso} km'),
+                Text('Status: ${entrega.status}'),
+                Text('Empresa: ${entrega.empresa.nome}'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+            child: const Text('Aceitar'),
+            onPressed: () async {
+              // Chama a função aceitarEntrega da ApiService
+              try {
+                await ApiService().aceitarEntrega(entrega.id);
+                // Após aceitar, atualize o status localmente
+                setState(() {
+                  entrega.status = 'A'; // Alterando o status para "Aceita"
+                });
+                Navigator.of(context).pop(); // Fecha o diálogo
+              } catch (e) {
+                // Se houver erro, exibe uma mensagem
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Erro ao aceitar entrega: $e')),
+                );
+              }
+            },
+          ),
+            TextButton(
+              child: Text('Fechar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,11 +130,20 @@ Future<void> _loadUserData() async {
                     return Center(child: Text('Erro: ${snapshot.error}'));
                   } else if (snapshot.hasData) {
                     final entregas = snapshot.data!;
+
+                    // Filtra as entregas com status 'D'
+                    final entregasFiltradas =
+                        entregas.where((entrega) => entrega.status == 'D').toList();
+
+                    if (entregasFiltradas.isEmpty) {
+                      return const Center(child: Text('Nenhuma entrega com status "D" encontrada.'));
+                    }
+
                     return ListView.builder(
                       shrinkWrap: true,
-                      itemCount: entregas.length,
+                      itemCount: entregasFiltradas.length,
                       itemBuilder: (context, index) {
-                        final entrega = entregas[index];
+                        final entrega = entregasFiltradas[index];
                         return Card(
                           margin: const EdgeInsets.only(bottom: 16),
                           elevation: 4,
@@ -99,38 +162,38 @@ Future<void> _loadUserData() async {
                                 ),
 
                                 // Imagem da empresa
-Center(
-  child: ClipRRect(
-    borderRadius: BorderRadius.circular(8.0),
-    child: Image.network(
-      entrega.empresa.logo?.isNotEmpty == true
-          ? entrega.empresa.logo!
-          : 'https://site.fo.usp.br/wp-content/uploads/2022/10/sem-foto.jpg', // URL de fallback
-      height: 94.0,
-      width: 274.0,
-      fit: BoxFit.contain,
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) {
-          return child; // Retorna a imagem quando carregada
-        } else {
-          return Center(
-            child: CircularProgressIndicator(
-              value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded /
-                      (loadingProgress.expectedTotalBytes ?? 1)
-                  : null,
-            ),
-          ); // Exibe um indicador de progresso enquanto a imagem carrega
-        }
-      },
-      errorBuilder: (context, error, stackTrace) {
-        return const Center(
-          child: Icon(Icons.error), // Exibe um ícone de erro se a imagem falhar ao carregar
-        );
-      },
-    ),
-  ),
-),
+                                Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      entrega.empresa.logo?.isNotEmpty == true
+                                          ? entrega.empresa.logo!
+                                          : 'https://site.fo.usp.br/wp-content/uploads/2022/10/sem-foto.jpg',
+                                      height: 94.0,
+                                      width: 274.0,
+                                      fit: BoxFit.contain,
+                                      loadingBuilder: (context, child, loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child; // Retorna a imagem quando carregada
+                                        } else {
+                                          return Center(
+                                            child: CircularProgressIndicator(
+                                              value: loadingProgress.expectedTotalBytes != null
+                                                  ? loadingProgress.cumulativeBytesLoaded /
+                                                      (loadingProgress.expectedTotalBytes ?? 1)
+                                                  : null,
+                                            ),
+                                          ); // Exibe um indicador de progresso enquanto a imagem carrega
+                                        }
+                                      },
+                                      errorBuilder: (context, error, stackTrace) {
+                                        return const Center(
+                                          child: Icon(Icons.error), // Exibe um ícone de erro se a imagem falhar ao carregar
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
 
                                 // Informações adicionais da entrega
                                 Column(
@@ -173,9 +236,7 @@ Center(
                                     height: 40.0,
                                     child: ElevatedButton.icon(
                                       onPressed: () {
-                                        setState(() {
-                                          _isOverlayVisible = true;
-                                        });
+                                        _showEntregaDetails(entrega); // Abre o diálogo com os detalhes da entrega
                                       },
                                       icon: _isAccepted
                                           ? const Icon(

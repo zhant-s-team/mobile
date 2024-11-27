@@ -30,6 +30,7 @@ Future<Map<String, dynamic>> login(String email, String password) async {
         // Armazenando o nome e o email do usuário
         await prefs.setString('user_name', data['user']['name']);
         await prefs.setString('user_email', data['user']['email']);
+        await prefs.setInt('user_id', data['user']['id']);
 
         return {'success': true, 'message': 'Login realizado com sucesso', 'data': data};
       } else {

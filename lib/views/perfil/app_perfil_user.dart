@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gestao/views/autenticacao/login_page.dart';
+import '../../services/auth_service.dart';
 import '../../styles/app_styles.dart'; // Importando o estilo
 import '../menu_page.dart';
 import 'app_alterar_senha.dart'; // Importando o arquivo de Alterar Senha
@@ -15,8 +17,8 @@ class AppPerfilUser extends StatefulWidget {
 }
 
 class _AppPerfilUserState extends State<AppPerfilUser> {
-  bool _isHovering = false; 
-  bool _isHeadphonesHovering = false; 
+  bool _isHovering = false;
+  bool _isHeadphonesHovering = false;
   
   @override
   void initState() {
@@ -48,168 +50,133 @@ class _AppPerfilUserState extends State<AppPerfilUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor, 
-      body: Stack(
-        children: [
-          Positioned(
-            top: 20.0,
-            left: 15.0,
-            child: MouseRegion(
-              onEnter: (_) {
-                setState(() {
-                  _isHovering = true;
-                });
-              },
-              onExit: (_) {
-                setState(() {
-                  _isHovering = false;
-                });
-              },
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MenuPage(),
-                    ),
-                  );
-                },
-                child: Text(
-                  '<- Voltar',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: _isHovering ? Colors.blue : Colors.black, 
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+      backgroundColor: AppStyles.backgroundColor,
+      appBar: AppBar(
+        actions: [
+          MouseRegion(
+            onEnter: (_) {
+              setState(() {
+                _isHeadphonesHovering = true;
+              });
+            },
+            onExit: (_) {
+              setState(() {
+                _isHeadphonesHovering = false;
+              });
+            },
+            child: IconButton(
+              icon: Icon(
+                Icons.headphones,
+                color: _isHeadphonesHovering ? Colors.blue : Colors.black,
               ),
-            ),
-          ),
-
-          Positioned(
-            top: 10.0,
-            right: 10.0,
-            child: MouseRegion(
-              onEnter: (_) {
-                setState(() {
-                  _isHeadphonesHovering = true;
-                });
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AppSuport(),
+                  ),
+                );
               },
-              onExit: (_) {
-                setState(() {
-                  _isHeadphonesHovering = false;
-                });
-              },
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AppSuport(),
-                    ),
-                  );
-                },
-                child: Icon(
-                  Icons.headphones,
-                  size: 48.0,
-                  color: _isHeadphonesHovering ? Colors.blue : Colors.black, 
-                ),
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 80.0,
-            left: 20.0,
-            right: 20.0,
-            child: Container(
-              height: 1.0,
-              color: const Color(0xFFD9D9D9),
-            ),
-          ),
-
-          const Positioned(
-            top: 105.0,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Text(
-                'Configurar usuário',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 160.0,
-            left: 20.0,
-            right: 20.0,
-            child: Container(
-              height: 1.0,
-              color: const Color(0xFFD9D9D9),
-            ),
-          ),
-
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 300.0,
-                  height: 40.0,
-                  margin: const EdgeInsets.only(bottom: 10.0), 
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PasswordScreen(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Alterar Senha",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                ),
-
-                Container(
-                  width: 300.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AppChangePerfil(), 
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Alterar Perfil",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                ),
-              ],
             ),
           ),
         ],
+        title: const Text('Configurar usuário'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Divider(color: Color(0xFFD9D9D9), thickness: 1.0),
+              
+              Container(
+                width: double.infinity,
+                height: 40.0,
+                margin: const EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PasswordScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "Alterar Senha",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+
+              Container(
+                width: double.infinity,
+                height: 40.0,
+                margin: const EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AppChangePerfil(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "Alterar Perfil",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+
+              Container(
+                width: double.infinity,
+                height: 40.0,
+                margin: const EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: TextButton(
+                  onPressed: () async {
+                    // Realiza o logout
+                    final result = await AuthService().logout();
+                    if (result['success']) {
+                      // Após o logout, redireciona o usuário para a tela de login
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    } else {
+                      // Em caso de erro no logout, exibe a mensagem de erro
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(result['message'])),
+                      );
+                    }
+                  },
+                  child: const Text(
+                    "Sair",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
