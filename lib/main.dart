@@ -39,8 +39,7 @@ import 'views/menu_page.dart';
 import 'views/autenticacao/login_page.dart'; // Importando as rotas centralizadas
 
 void main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Garantir que a inicialização dos plugins seja feita antes
+  WidgetsFlutterBinding.ensureInitialized();
   final isLoggedIn = await AuthService().getToken() !=
       null; // Verificar se o usuário está logado
   runApp(MyApp(isLoggedIn: isLoggedIn)); // Passar o estado de login para o app
@@ -55,19 +54,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => EntregaController(ApiService())), // Fornece o DataController
+        ChangeNotifierProvider(create: (context) => EntregaController(ApiService())),
         ChangeNotifierProvider(create: (context) => AuthController()), // Fornece o AuthController
       ],
       child: MaterialApp(
         title: 'ViaCargo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: const Color(0xFFF5F5F5),
-        ),
         initialRoute: isLoggedIn ? '/home' : '/login',
         routes: {
-          '/login': (context) => const LoginPage(),
+          '/login': (context) => const LoginPage(),// usuario de teste: 1@gmail.com          senha: 12345678
           '/home': (context) => const MenuPage(),
         },
       ),

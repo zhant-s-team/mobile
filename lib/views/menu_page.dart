@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao/views/entregas/entregas_page.dart';
 import 'package:gestao/views/home/home_page2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../styles/app_styles.dart';
@@ -20,16 +21,27 @@ class _MenuPageState extends State<MenuPage> {
   bool _isHovering = false;
   bool _isHeadphonesHovering = false;
 
+  String _userName = 'Usuário'; // Inicializando o nome do usuário
+
   @override
   void initState() {
     super.initState();
     _loadAcceptanceStatus();
+    _loadUserData();
   }
 
   Future<void> _loadAcceptanceStatus() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _isAccepted = prefs.getBool('isAccepted') ?? false;
+    });
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final nome = prefs.getString('user_name') ?? 'Usuário';
+    setState(() {
+      _userName = nome; // Atualizando o nome do usuário
     });
   }
 
@@ -46,7 +58,7 @@ class _MenuPageState extends State<MenuPage> {
 
   final List<Widget> _pages = [
     const HomePage2(), // Exibe todas as entregas
-    const Center(child: Text('Fretes aceitos')), // Substituir com lista de fretes
+    EntregasPage(), // Substituir com lista de fretes
     const AppPerfilUser(),
     const AppSuport(),
   ];
@@ -55,6 +67,10 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppStyles.backgroundColor,
+      appBar: AppBar(
+        title: Text('Olá, $_userName'), // Exibe o nome do usuário na AppBar
+        backgroundColor: Colors.amber, // Escolha a cor da AppBar
+      ),
       body: _pages[_selectedIndex], // Exibe a página selecionada
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
