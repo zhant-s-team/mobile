@@ -76,4 +76,24 @@ class ApiService {
     }
   }
 
+// Função para cancelar uma entrega
+Future<void> cancelarEntrega(int entregaId) async {
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token') ?? ''; // Recupera o token de autenticação
+
+  final response = await http.post(
+    Uri.parse('$baseUrl/entregas/$entregaId/cancelar'), // Rota para cancelar a entrega
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token', // Passa o token no header de autorização
+    },
+  );
+
+  if (response.statusCode == 200) {
+    print('Entrega cancelada com sucesso!');
+  } else {
+    throw Exception('Erro ao cancelar entrega: ${response.statusCode}');
+  }
+}
+
 }

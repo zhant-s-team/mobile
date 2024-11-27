@@ -170,7 +170,7 @@ class _HomePageState2 extends State<HomePage2> {
                                           : 'https://site.fo.usp.br/wp-content/uploads/2022/10/sem-foto.jpg',
                                       height: 94.0,
                                       width: 274.0,
-                                      fit: BoxFit.contain,
+                                      fit: BoxFit.cover,
                                       loadingBuilder: (context, child, loadingProgress) {
                                         if (loadingProgress == null) {
                                           return child; // Retorna a imagem quando carregada
